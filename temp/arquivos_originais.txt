@@ -1,0 +1,13 @@
+C:\Users\leandro_ogawa\.portugol\enquanto_ex3.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex2.por
+C:\Users\leandro_ogawa\.portugol\con1.por
+C:\Users\leandro_ogawa\.portugol\con2.por
+C:\Users\leandro_ogawa\.portugol\con3.por
+C:\Users\leandro_ogawa\.portugol\con5.por
+C:\Users\leandro_ogawa\.portugol\con6.por
+C:\Users\leandro_ogawa\.portugol\con7.por
+C:\Users\leandro_ogawa\.portugol\con8.por
+C:\Users\leandro_ogawa\.portugol\con4.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex7.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex8.por
+C:\Users\leandro_ogawa\.portugol\trilhaPrfc2.por

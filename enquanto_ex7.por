@@ -1,0 +1,36 @@
+programa
+{
+	
+	funcao inicio()
+	{
+		real fatura
+		real juros
+		real valorMensal
+		escreva("Digite o valor da fatura: ")
+		leia(fatura)
+		escreva("Digite o valor de juros: ")
+		leia(juros)
+		escreva("Digite o valor mensal a ser pago: ")
+		leia(valorMensal)
+		inteiro mesAtual = 0
+		enquanto(fatura > 0){
+			mesAtual++
+			escreva("Mês ", mesAtual, ": ", fatura, "\n")
+			real jurosAtual = (juros*0.01)
+			fatura = fatura + (fatura*jurosAtual)
+			fatura -= valorMensal
+		}
+	}
+}
+
+/* $$$ Portugol Studio $$$ 
+ * 
+ * Esta seção do arquivo guarda informações do Portugol Studio.
+ * Você pode apagá-la se estiver utilizando outro editor.
+ * 
+ * @POSICAO-CURSOR = 364; 
+ * @PONTOS-DE-PARADA = ;
+ * @SIMBOLOS-INSPECIONADOS = ;
+ * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
+ * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
+ */
