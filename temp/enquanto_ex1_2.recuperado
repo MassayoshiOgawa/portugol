@@ -1,0 +1,99 @@
+programa
+{
+	
+	funcao inicio()
+	{
+		inteiro voto
+		logico fimVotos = falso
+		inteiro votantes15 = 0
+		inteiro votantes32 = 0
+		inteiro votantes44 = 0
+		inteiro votantes0 = 0
+		inteiro votantesNulo = 0
+		cadeia temVotantes
+		escreva("Existem votantes? [S/N]")
+		leia(temVotantes)
+		se(temVotantes == "N"){
+			fimVotos = verdadeiro
+		}
+		enquanto(fimVotos == falso){
+			escreva("===================\n")
+			escreva("  Urna Eletrônica  \n")
+			escreva("[15] Osmar Profundo\n")
+			escreva("[32] Alceu Dispôr  \n")
+			escreva("[44] Armando Goupe \n")
+			escreva("                   \n")
+			escreva("  [0] Voto Branco  \n")
+			escreva("                   \n")
+			escreva("   Digite o N° do  \n")
+			escreva("      seu voto!    \n")
+			escreva("===================\n")
+			leia(voto)
+			escolha(voto){
+				caso 15:
+					votantes15++	
+					pare
+				caso 32:
+					votantes32++
+					pare
+				caso 44:
+					votantes44++		
+					pare
+				caso 0:
+					votantes0++	
+					pare
+				caso contrario:
+					votantesNulo++
+			}
+			limpa()
+			escreva("Mais alguma pessoa irá votar? [SIM/NÃO]")
+			leia(temVotantes)
+			se(temVotantes == "NÃO"){
+				fimVotos = verdadeiro
+			} senao{
+				limpa()	
+			}
+		}
+		limpa()
+		escreva("Quantidade de votos:\n")
+		escreva("        Votos:       \n")
+		escreva("[15] Osmar Profundo:", votantes15 ,"\n")
+		escreva("[32] Alceu Dispôr:  ", votantes32 ,"\n")
+		escreva("[44] Armando Goupe: ", votantes44 ,"\n")
+		escreva("\n")
+		escreva("Votos em branco: ", votantes0 ,"\n")
+		escreva("Votos nulos:     ", votantesNulo ,"\n")
+		escreva(" \n")
+		escreva(" \n")
+		escreva("Resultado da eleição:\n")
+		se(((votantes0 + votantesNulo) > (votantes15 + votantes32 + votantes44)) ou ((votantes15 + votantes32 + votantes44) == 0)){
+			escreva("Eleição cancelada.")
+		} senao {
+			se(votantes15 == votantes32 e votantes44 == votantes32){
+				escreva("Empate.")
+			} senao {
+				se(votantes15 > votantes32 e votantes15 > votantes44){
+					escreva("Osmar Profundo Ganhou!")
+				} senao se(votantes32 > votantes15 e votantes32 > votantes44){
+					escreva("Alceu Dispôr Ganhou!")
+				} senao se(votantes44 > votantes15 e votantes44 > votantes32){
+					escreva("Armando Goupe Ganhou!")
+				} senao{
+					escreva("Empate.")	
+				}
+			}
+		}
+	}
+	
+}
+/* $$$ Portugol Studio $$$ 
+ * 
+ * Esta seção do arquivo guarda informações do Portugol Studio.
+ * Você pode apagá-la se estiver utilizando outro editor.
+ * 
+ * @POSICAO-CURSOR = 823; 
+ * @PONTOS-DE-PARADA = ;
+ * @SIMBOLOS-INSPECIONADOS = ;
+ * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
+ * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
+ */

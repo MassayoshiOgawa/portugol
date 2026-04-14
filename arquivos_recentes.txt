@@ -1,6 +1,6 @@
-C:\Users\leandro_ogawa\.portugol\enquanto_ex5.por
-C:\Users\leandro_ogawa\.portugol\enquanto_ex6.por
-C:\Users\leandro_ogawa\.portugol\enquanto_ex7.por
-C:\Users\leandro_ogawa\.portugol\enquanto_ex8.por
-C:\Users\leandro_ogawa\.portugol\trilhaPrfc2.por
 C:\Users\leandro_ogawa\.portugol\trilhaPrfc_Corrigido.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex8.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex7.por
+C:\Users\leandro_ogawa\.portugol\vetor_3.por
+C:\Users\leandro_ogawa\.portugol\vetor_4.por
+C:\Users\leandro_ogawa\.portugol\vetor_5.por

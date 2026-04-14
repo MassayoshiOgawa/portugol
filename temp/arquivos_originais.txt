@@ -1,5 +1,3 @@
-C:\Users\leandro_ogawa\.portugol\enquanto_ex3.por
-C:\Users\leandro_ogawa\.portugol\enquanto_ex2.por
 C:\Users\leandro_ogawa\.portugol\con1.por
 C:\Users\leandro_ogawa\.portugol\con2.por
 C:\Users\leandro_ogawa\.portugol\con3.por
@@ -8,6 +6,19 @@ C:\Users\leandro_ogawa\.portugol\con6.por
 C:\Users\leandro_ogawa\.portugol\con7.por
 C:\Users\leandro_ogawa\.portugol\con8.por
 C:\Users\leandro_ogawa\.portugol\con4.por
-C:\Users\leandro_ogawa\.portugol\enquanto_ex7.por
-C:\Users\leandro_ogawa\.portugol\enquanto_ex8.por
 C:\Users\leandro_ogawa\.portugol\trilhaPrfc2.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex2.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex3.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex4.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex6.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex5.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex1.por
+C:\Users\leandro_ogawa\.portugol\vetor_1.por
+C:\Users\leandro_ogawa\.portugol\buckshotroulette.por
+C:\Users\leandro_ogawa\.portugol\clashRoyaleImpostor.por
+C:\Users\leandro_ogawa\.portugol\vetor_2.por
+C:\Users\leandro_ogawa\.portugol\trilhaPrfc_Corrigido.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex8.por
+C:\Users\leandro_ogawa\.portugol\enquanto_ex7.por
+C:\Users\leandro_ogawa\.portugol\vetor_3.por
+C:\Users\leandro_ogawa\.portugol\vetor_4.por

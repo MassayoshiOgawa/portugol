@@ -1,36 +1,16 @@
 programa
 {
+	inclua biblioteca Tipos
+	inclua biblioteca Texto
+	inclua biblioteca Util
 	
 	funcao inicio()
 	{
-		logico finalizar = falso
-		inteiro idadeTotal = 0, idade
-		inteiro notaFilme
-		inteiro exelente = 0, boa = 0, ruim = 0 // notas 
-		enquanto(finalizar == falso){
-			caracter resposta, genero
-			limpa()
-			escreva("Inserir nova opinião? [S/N]")
-			leia(resposta)
-			se(resposta == 'N'){
-				pare
-			}
-			escreva("Digite a idade")
-			leia(idade)
-			idadeTotal += idade
-			escreva("Gênero da pessoa [M/F]:")
-			leia(genero)
-			escreva("Nota pro filme:")
-			leia(notaFilme)
-			se(notaFilme <= 5){
-				ruim++
-			} senao se(notaFilme == 10){
-				exelente++
-			} senao {
-				boa++
-			}
+		inteiro numeros[11]
+		para(inteiro i = 1; i <= 10; i++){
+			numeros[i] = Util.sorteia(1, 50)
 		}
-		escreva("Média das idades do votantes:")
+		escreva("Digite um número para ver se ele existe no array de números ")
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -38,7 +18,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 662; 
+ * @POSICAO-CURSOR = 281; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

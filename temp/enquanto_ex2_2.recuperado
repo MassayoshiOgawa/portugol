@@ -3,7 +3,9 @@ programa
 	
 	funcao inicio()
 	{
-		inteiro numero1 = 0, numero2 = 0, tentativa = 0
+		inteiro tentativasFeitas = 0
+		inteiro numero1 = 0, numero2 = 0
+		inteiro tentativa = 0
 		escreva("Insira o primeiro número:")
 		leia(numero1)
 		escreva("Insira o segundo número:")
@@ -12,10 +14,12 @@ programa
 		enquanto(tentativa != numero1 + numero2){
 			leia(tentativa)
 			se(tentativa != numero1 + numero2){
-				escreva("tente novamente")
+				escreva("Você errou, tente novamente.")
+				tentativasFeitas++
 			}
 		}
-		escreva("resultado correto!")
+		escreva("Você acertou!")
+		escreva("Número de tentativas feitas: ", tentativasFeitas)
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -23,7 +27,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 82; 
+ * @POSICAO-CURSOR = 550; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

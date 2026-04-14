@@ -1,0 +1,225 @@
+programa
+{
+	// Inclui a biblioteca para gerar números aleatórios
+	inclua biblioteca Util --> u
+	
+	funcao inicio()
+	{
+		// --- Declaração de Variáveis ---
+		cadeia cartas[127]
+		cadeia players[21] // 20 posições + 1 para evitar erro de índice
+		inteiro i, j, impostorID, impostorID2
+		cadeia aux, delay, cartaEscolhida, repeatMatch, jogadorEscolhido, resp
+		logico modoDoisImpostores = falso
+		logico modoAleatorio = falso
+
+		// --- Inicialização das Cartas ---
+		// (Mantendo a numeração conforme o original para compatibilidade)
+		cartas[1] = "Arqueiras"
+		cartas[2] = "Rainha Arqueira (Campeão)"
+		cartas[3] = "Bebê Dragão"
+		cartas[4] = "Balão"
+		cartas[5] = "Bandida"
+		cartas[6] = "Bárbaros"
+		cartas[7] = "Morcegos"
+		cartas[8] = "Curadora Guerreira"
+		cartas[9] = "Ariete"
+		cartas[10] = "Berserker"
+		cartas[11] = "Bombardeiro"
+		cartas[12] = "Bandida Chefe (Campeão)"
+		cartas[13] = "Lançador"
+		cartas[15] = "Carrinho de Canhão"
+		cartas[17] = "Príncipe das Trevas"
+		cartas[18] = "Goblin Lanceiro"
+		cartas[19] = "Dragão Elétrico"
+		cartas[20] = "Gigante Elétrico"
+		cartas[21] = "Espírito Elétrico"
+		cartas[22] = "Mago Elétrico"
+		cartas[23] = "Bárbaros de Elite"
+		cartas[25] = "Golem de Elixir"
+		cartas[27] = "Executor"
+		cartas[28] = "Pirotécnica"
+		cartas[29] = "Espírito de Fogo"
+		cartas[30] = "Pescador"
+		cartas[31] = "Máquina Voadora"
+		cartas[32] = "Fornalha"
+		cartas[33] = "Gigante"
+		cartas[34] = "Esqueleto Gigante"
+		cartas[36] = "Gangue de Goblins"
+		cartas[37] = "Goblin Demolidor"
+		cartas[38] = "Gigante Goblin"
+		cartas[39] = "Máquina Goblin"
+		cartas[40] = "Goblins"
+		cartas[42] = "Cavaleiro Dourado (Campeão)"
+		cartas[43] = "Golem"
+		cartas[46] = "Guardas"
+		cartas[47] = "Corredor"
+		cartas[48] = "Caçador"
+		cartas[49] = "Espírito de Cura"
+		cartas[50] = "Golem de Gelo"
+		cartas[51] = "Espírito de Gelo"
+		cartas[52] = "Mago de Gelo"
+		cartas[53] = "Dragão Infernal"
+		cartas[54] = "Cavaleiro"
+		cartas[55] = "Lava Hound"
+		cartas[57] = "Pequeno Príncipe (Campeão)"
+		cartas[58] = "Lenhador"
+		cartas[59] = "Arqueiro Mágico"
+		cartas[60] = "Mega Cavaleiro"
+		cartas[61] = "Servo Mega"
+		cartas[62] = "Mineiro Bombado (Campeão)"
+		cartas[63] = "Mineiro"
+		cartas[64] = "Mini P.E.K.K.A."
+		cartas[65] = "Horda de Servos"
+		cartas[66] = "Servos"
+		cartas[67] = "Monge"
+		cartas[68] = "Bruxa Mãe"
+		cartas[70] = "Mosqueteira"
+		cartas[71] = "Bruxa da Noite"
+		cartas[72] = "P.E.K.K.A."
+		cartas[73] = "Fênix"
+		cartas[74] = "Laura mais nego"
+		cartas[75] = "Príncipe"
+		cartas[76] = "Princesa"
+		cartas[77] = "Domadora de Carneiro"
+		cartas[78] = "Patifes"
+		cartas[79] = "Vinhas"
+		cartas[80] = "Fantasma Real"
+		cartas[81] = "Gigante Real"
+		cartas[82] = "Porcos Reais"
+		cartas[83] = "Recrutas Reais"
+		cartas[84] = "Gigante das Runas"
+		cartas[85] = "Exército de Esqueletos"
+		cartas[86] = "Barril de Esqueletos"
+		cartas[87] = "Dragões Esqueleto"
+		cartas[88] = "Rei dos Esqueletos (Campeão)"
+		cartas[89] = "Esqueletos"
+		cartas[90] = "Sparky"
+		cartas[91] = "Goblins Lanceiros"
+		cartas[92] = "Imperatriz dos Espíritos"
+		cartas[93] = "Arbusto Suspeito"
+		cartas[94] = "Três Mosqueteiras"
+		cartas[95] = "Valquíria"
+		cartas[96] = "Quebradores de Muros"
+		cartas[97] = "Bruxa"
+		cartas[98] = "Mago"
+		cartas[99] = "Zappies"
+		cartas[100] = "Torre de Bombas"
+		cartas[101] = "Canhão"
+		cartas[102] = "Torre Inferno"
+		cartas[103] = "Morteiro"
+		cartas[104] = "Tesla"
+		cartas[105] = "X-Besta"
+		cartas[106] = "Cabana de Bárbaros"
+		cartas[107] = "Coletor de Elixir"
+		cartas[108] = "Jaula de Goblin"
+		cartas[109] = "Broca de Goblins"
+		cartas[110] = "Cabana de Goblins"
+		cartas[111] = "Lápide"
+		cartas[112] = "Flechas"
+		cartas[113] = "Barril de Bárbaro"
+		cartas[114] = "Terremoto"
+		cartas[115] = "Bola de Fogo"
+		cartas[116] = "Gelo"
+		cartas[117] = "Bola de Neve"
+		cartas[118] = "Maldição dos Goblins"
+		cartas[119] = "Relâmpago"
+		cartas[120] = "Veneno"
+		cartas[121] = "Fúria"
+		cartas[122] = "Foguete"
+		cartas[123] = "Entrega Real"
+		cartas[124] = "O Tronco"
+		cartas[125] = "Tornado"
+		cartas[126] = "Zap"
+
+		// --- Definição dos Jogadores ---
+		players[1] = "Leandro"
+		players[2] = "Andre"
+		players[3] = "Feddersen"
+		players[4] = "Gago"
+		players[5] = "Sales"
+		players[6] = "Monteiro"
+		j = 6
+
+		// --- Menu Inicial de Modos ---
+		faca {
+			limpa()
+			escreva("Modos de Jogo:\n")
+			escreva("[1] 1 impostor\n")
+			escreva("[2] 2 impostores\n")
+			escreva("[3] Nº aleatório de impostores\n")
+			escreva("Escolha: ")
+			leia(resp)
+
+			se (resp == "2") { modoDoisImpostores = verdadeiro }
+			senao se (resp == "3") { modoAleatorio = verdadeiro }
+			
+		} enquanto (resp != "1" e resp != "2" e resp != "3")
+
+		// --- Loop Principal da Partida ---
+		faca {
+			// Sorteia carta válida
+			faca {
+				i = u.sorteia(1, 126)
+				cartaEscolhida = cartas[i]
+			} enquanto (cartaEscolhida == "")
+
+			// Sorteia 1º Impostor
+			impostorID = u.sorteia(1, j)
+			impostorID2 = 0
+
+			// Lógica para 2 ou mais impostores
+			se (modoDoisImpostores ou (modoAleatorio e u.sorteia(1, 2) == 2)) {
+				faca {
+					impostorID2 = u.sorteia(1, j)
+				} enquanto (impostorID2 == impostorID)
+			}
+
+			// Sorteia quem começa
+			jogadorEscolhido = players[u.sorteia(1, j)]
+
+			// --- Distribuição (Esconder Cartas) ---
+			para (i = 1; i <= j; i++) {
+				limpa()
+				faca {
+					escreva(players[i], ", ver carta? [S/N]: ")
+					leia(aux)
+				} enquanto (aux != "S" e aux != "s")
+
+				se (i == impostorID ou i == impostorID2) {
+					escreva("\nVOCÊ É O IMPOSTOR!\n")
+				} senao {
+					escreva("\nSua carta é: ", cartaEscolhida, "\n")
+				}
+
+				escreva("\nPressione ENTER para continuar...")
+				leia(delay)
+			}
+
+			// --- Discussão ---
+			limpa()
+			escreva("=== HORA DA DISCUSSÃO ===\n")
+			escreva("O jogador ", jogadorEscolhido, " começa a falar.\n")
+			
+			se (impostorID2 > 0) { escreva("Modo atual: 2 Impostores.\n") }
+			senao { escreva("Modo atual: 1 Impostor.\n") }
+
+			escreva("\nReiniciar partida? [S/N]: ")
+			leia(repeatMatch)
+
+		} enquanto (repeatMatch == "S" ou repeatMatch == "s")
+
+		escreva("\nFim de jogo!")
+	}
+}
+/* $$$ Portugol Studio $$$ 
+ * 
+ * Esta seção do arquivo guarda informações do Portugol Studio.
+ * Você pode apagá-la se estiver utilizando outro editor.
+ * 
+ * @POSICAO-CURSOR = 6025; 
+ * @PONTOS-DE-PARADA = ;
+ * @SIMBOLOS-INSPECIONADOS = ;
+ * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
+ * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
+ */

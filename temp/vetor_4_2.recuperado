@@ -7,10 +7,22 @@ programa
 	funcao inicio()
 	{
 		inteiro numeros[11]
+		inteiro choice
 		para(inteiro i = 1; i <= 10; i++){
 			numeros[i] = Util.sorteia(1, 50)
 		}
-		escreva("Digite um número para ver se ele existe no array de números aleatórios")
+		escreva("Digite um número para ver se ele existe no array de números aleatórios: ")
+		leia(choice)
+		para(inteiro i = 1; i <= 11; i++){
+			se(i == 11){
+				escreva("Não foi possível achar o número ", choice, " no array de números.")
+				pare
+			}
+			se(numeros[i] == choice){
+				escreva("O número ", choice, " foi encontrado na posição ", i, " do vetor.")
+				pare
+			}
+		}
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -18,7 +30,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 291; 
+ * @POSICAO-CURSOR = 470; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
