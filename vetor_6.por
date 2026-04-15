@@ -4,15 +4,15 @@ programa
 	
 	funcao inicio()
 	{
-		inteiro tempDiasAno[366]
-		inteiro menor, maior
-		real mediaAbril = 0.0
-		para(inteiro i = 1; i <= 365; i++){
-			tempDiasAno[i] = Util.sorteia(-10, 42)
+		inteiro numeros[11]
+		inteiro maior = 0
+		para(inteiro i = 1; i<= 10; i++){
+			numeros[i] = Util.sorteia(1, 50)
+			se(numeros[i] > maior){
+				maior = numeros[i]
+			}
 		}
-		para(inteiro i = 90; i <= 120; i++){
-			mediaAbril += tempDiasAno[i]
-		}
+		escreva("Maior número no vetor: ", maior)
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -20,7 +20,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 293; 
+ * @POSICAO-CURSOR = 276; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

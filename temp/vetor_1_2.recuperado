@@ -2,7 +2,7 @@ programa
 {
 	inclua biblioteca Tipos --> tp
 	inclua biblioteca Texto --> tx
-	inclua biblioteca Util --> ut
+	inclua biblioteca Util --> ut
 	
 	cadeia familia1[5]
 	cadeia familia2[5]
@@ -24,7 +24,7 @@ programa
 		}
 	}
 	
-	funcao inicio(){
+	funcao inicio(){
 		cadeia choice
 		cadeia info
 		logico encerrar = falso

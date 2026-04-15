@@ -4,14 +4,12 @@ programa
 	
 	funcao inicio()
 	{
-		inteiro tempDiasAno[366]
-		inteiro menor, maior
-		real mediaAbril = 0.0
-		para(inteiro i = 1; i <= 365; i++){
-			tempDiasAno[i] = Util.sorteia(-10, 42)
+		inteiro numeros[5]
+		para(inteiro i = 1; i <= 4; i++){
+			numeros[i] = Util.sorteia(1, 50)
 		}
-		para(inteiro i = 90; i <= 120; i++){
-			mediaAbril += tempDiasAno[i]
+		para(inteiro i = 4; i >= 1; i--){
+			escreva(numeros[i], "\n")
 		}
 	}
 }
@@ -20,7 +18,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 293; 
+ * @POSICAO-CURSOR = 220; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

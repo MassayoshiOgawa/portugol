@@ -2,7 +2,7 @@ programa
 {
 	inclua biblioteca Tipos --> tp
 	inclua biblioteca Texto --> tx
-	inclua biblioteca Util --> ut
+	inclua biblioteca Util --> ut
 	
 	cadeia familia1[5]
 	cadeia familia2[5]
@@ -24,7 +24,7 @@ programa
 		}
 	}
 	
-	funcao inicio(){
+	funcao inicio(){
 		cadeia choice
 		cadeia info
 		logico encerrar = falso
@@ -112,7 +112,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1716; 
+ * @POSICAO-CURSOR = 2143; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

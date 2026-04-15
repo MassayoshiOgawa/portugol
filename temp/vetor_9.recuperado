@@ -4,14 +4,19 @@ programa
 	
 	funcao inicio()
 	{
-		inteiro tempDiasAno[366]
-		inteiro menor, maior
-		real mediaAbril = 0.0
-		para(inteiro i = 1; i <= 365; i++){
-			tempDiasAno[i] = Util.sorteia(-10, 42)
+		inteiro numeros[11]
+		inteiro multiplicados[11]
+		inteiro multiplicador
+		para(inteiro i = 1; i <= 10; i++){
+			numeros[i] = Util.sorteia(1, 50)
 		}
-		para(inteiro i = 90; i <= 120; i++){
-			mediaAbril += tempDiasAno[i]
+		escreva("Insira o número multiplicador: ")
+		leia(multiplicador)
+		para(inteiro i = 1; i <= 10; i++){
+			multiplicados[i] = numeros[i] * multiplicador
+		}
+		para(inteiro i = 1; i <= 10; i++){
+			escreva(multiplicados[i], "\n")
 		}
 	}
 }
@@ -20,7 +25,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 293; 
+ * @POSICAO-CURSOR = 438; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

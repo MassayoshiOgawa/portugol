@@ -4,23 +4,27 @@ programa
 	
 	funcao inicio()
 	{
-		inteiro tempDiasAno[366]
-		inteiro menor, maior
-		real mediaAbril = 0.0
-		para(inteiro i = 1; i <= 365; i++){
-			tempDiasAno[i] = Util.sorteia(-10, 42)
+		inteiro numeros[11]
+		inteiro menor = 51
+		inteiro posicao = 0
+		para(inteiro i = 1; i <= 10; i++){
+			numeros[i] = Util.sorteia(1, 50)
+			se(numeros[i] < menor){
+				menor = numeros[i]
+				posicao = i
+			}
 		}
-		para(inteiro i = 90; i <= 120; i++){
-			mediaAbril += tempDiasAno[i]
-		}
+		escreva("Menor número no array: ", menor)
+		escreva("\nPosição do menor número: ", posicao)
 	}
 }
+
 /* $$$ Portugol Studio $$$ 
  * 
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 293; 
+ * @POSICAO-CURSOR = 260; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
