@@ -4,27 +4,31 @@ programa
 	
 	funcao inicio()
 	{
-		inteiro numeros[11]
-		inteiro menor = 51
-		inteiro posicao = 0
-		para(inteiro i = 1; i <= 10; i++){
-			numeros[i] = Util.sorteia(1, 50)
-			se(numeros[i] < menor){
-				menor = numeros[i]
-				posicao = i
-			}
+		inteiro numeros[4][5]
+		inteiro somalinha = 0
+		inteiro total = 0
+		para(inteiro i = 0; i < 4; i++){
+			para(inteiro j = 0; j < 5; j++){
+				numeros[i][j] = Util.sorteia(1, 100)
+			}	
 		}
-		escreva("Menor número no array: ", menor)
-		escreva("\nPosição do menor número: ", posicao)
+		para(inteiro i = 0; i < 4; i++){
+			somalinha = 0
+			para(inteiro j = 0; j < 5; j++){
+				somalinha += numeros[i][j]
+				total += numeros[i][j]
+			}
+			escreva("soma da ",i+1," linha: ", somalinha, "\n")
+		}
+		escreva("Total: ", total)
 	}
 }
-
 /* $$$ Portugol Studio $$$ 
  * 
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 99; 
+ * @POSICAO-CURSOR = 423; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

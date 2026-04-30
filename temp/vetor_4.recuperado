@@ -16,6 +16,7 @@ programa
 		para(inteiro i = 1; i <= 11; i++){
 			se(i == 11){
 				escreva("Não foi possível achar o número ", choice, " no array de números.")
+				pare
 			}
 			se(numeros[i] == choice){
 				escreva("O número ", choice, " foi encontrado na posição ", i, " do vetor.")
@@ -29,7 +30,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 576; 
+ * @POSICAO-CURSOR = 470; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

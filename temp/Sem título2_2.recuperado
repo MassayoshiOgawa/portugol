@@ -1,16 +1,9 @@
 programa
 {
-	inclua biblioteca Tipos
-	inclua biblioteca Texto
-	inclua biblioteca Util
 	
 	funcao inicio()
 	{
-		inteiro numeros[11]
-		para(inteiro i = 1; i <= 10; i++){
-			numeros[i] = Util.sorteia(1, 50)
-		}
-		escreva("Digite um número para ver se ele existe no array de números aleatórios")
+		escreva("Olá Mundo")
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -18,7 +11,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 291; 
+ * @POSICAO-CURSOR = 12; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

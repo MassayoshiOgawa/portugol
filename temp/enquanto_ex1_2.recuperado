@@ -23,7 +23,7 @@ programa
 			escreva("[32] Alceu Dispôr  \n")
 			escreva("[44] Armando Goupe \n")
 			escreva("                   \n")
-			escreva("  [0] Voto Branco  \n")
+			escreva("   [0] Voto Nulo   \n")
 			escreva("                   \n")
 			escreva("   Digite o N° do  \n")
 			escreva("      seu voto!    \n")
@@ -91,7 +91,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 823; 
+ * @POSICAO-CURSOR = 1002; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

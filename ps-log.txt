@@ -1,4 +1,4 @@
-GRAVE [18:57:07:079]: null [br.univali.ps.ui.carrossel.CarrosselCursos lambda$new$0] 
+GRAVE [19:07:04:810]: null [br.univali.ps.ui.carrossel.CarrosselCursos lambda$new$0] 
 java.io.FileNotFoundException: https://portugol-api.vercel.app/api/cursos
 	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1890)
 	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1492)

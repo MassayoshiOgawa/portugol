@@ -1,6 +1,6 @@
-C:\Users\leandro_ogawa\.portugol\vetor_7.por
-C:\Users\leandro_ogawa\.portugol\vetor_8.por
-C:\Users\leandro_ogawa\.portugol\vetor_9.por
-C:\Users\leandro_ogawa\.portugol\vetor_10.por
-C:\Users\leandro_ogawa\.portugol\vetor_11.por
-C:\Users\leandro_ogawa\.portugol\vetor_1.por
+C:\Users\leandro_ogawa\.portugol\mat_3.por
+C:\Users\leandro_ogawa\.portugol\mat_4.por
+C:\Users\leandro_ogawa\.portugol\mat+6.por
+C:\Users\leandro_ogawa\Downloads\hyper_portugol_rpg.por
+C:\Users\leandro_ogawa\.portugol\mat_5.por
+C:\Users\leandro_ogawa\Downloads\mapaRpg.por
