@@ -30,6 +30,6 @@ C:\Users\leandro_ogawa\.portugol\mat_2.por
 C:\Users\leandro_ogawa\.portugol\mat_3.por
 C:\Users\leandro_ogawa\.portugol\mat_4.por
 C:\Users\leandro_ogawa\.portugol\mat+6.por
-C:\Users\leandro_ogawa\Downloads\hyper_portugol_rpg.por
 C:\Users\leandro_ogawa\.portugol\mat_5.por
 C:\Users\leandro_ogawa\Downloads\mapaRpg.por
+C:\Users\leandro_ogawa\Downloads\hyper_portugol_rpg.por
