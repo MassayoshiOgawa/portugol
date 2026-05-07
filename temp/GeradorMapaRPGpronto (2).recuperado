@@ -2,7 +2,7 @@ programa
 {
 	inclua biblioteca Util
 	const inteiro tamanhoMapaX = 10
-	const inteiro tamanhoMapaY = 20
+	const inteiro tamanhoMapaY = 30
 	cadeia matriz[tamanhoMapaX][tamanhoMapaY]
 	logico pararGeracao = falso
 	inteiro lastXpos = 0, lastYpos = 0
@@ -207,7 +207,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 100; 
+ * @POSICAO-CURSOR = 98; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

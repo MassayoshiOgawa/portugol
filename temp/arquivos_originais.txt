@@ -1,6 +1,4 @@
-C:\Users\leandro_ogawa\.portugol\mat_7.por
 C:\Users\leandro_ogawa\.portugol\sintaxe.por
 C:\Users\leandro_ogawa\Desktop\sintaxe.por
 C:\Users\leandro_ogawa\.portugol\GeradorMapaRPGpronto (2).por
-C:\Users\leandro_ogawa\Desktop\GeradorMapaRPGpronto_Prompt.por
 C:\Users\leandro_ogawa\Downloads\30b0b51f-05b3-49ae-9826-1200c13da687.por
