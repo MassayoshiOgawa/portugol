@@ -1,0 +1,119 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 4 0 R 5 0 R 6 0 R 7 0 R 8 0 R 9 0 R 10 0 R 11 0 R 12 0 R 13 0 R 14 0 R 15 0 R 16 0 R 17 0 R 18 0 R 19 0 R] /Count 17 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 20 0 R /Resources << /Font << /F1 21 0 R /F2 22 0 R /F3 23 0 R >> >> >>
+endobj
+20 0 obj
+<< /Length 900 >>
+stream
+BT
+/F1 32 Tf
+100 720 Td
+(SOMBRAS DE VALDORIA) Tj
+/F2 16 Tf
+130 680 Td
+(RPG de Texto Profissional) Tj
+/F3 12 Tf
+160 640 Td
+(Manual do Jogador - Versao 1.0) Tj
+/F2 11 Tf
+80 540 Td
+(Um RPG completo desenvolvido em Portugol Studio) Tj
+80 515 Td
+(8 Classes | 40 Habilidades | Sistema Elemental) Tj
+80 490 Td
+(Buffs/Debuffs | Inventario | Sobrevivencia) Tj
+80 465 Td
+(Loja | Ferreiro | Mapas Procedurais) Tj
+80 440 Td
+(Quests | Eventos | Save System) Tj
+/F1 12 Tf
+80 360 Td
+(FILOSOFIA DO JOGO) Tj
+/F3 10 Tf
+80 335 Td
+(1. Progressao Constante - Sempre se sinta mais forte) Tj
+80 315 Td
+(2. Decisoes Estrategicas - Cada escolha importa) Tj
+80 295 Td
+(3. Risco vs Recompensa - Recompensas proporcionais) Tj
+80 275 Td
+(4. Especializacao de Builds - Cada classe e unica) Tj
+80 255 Td
+(5. Escalabilidade Previsivel - Sem power creep) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 24 0 R /Resources << /Font << /F1 21 0 R /F2 22 0 R /F3 23 0 R >> >> >>
+endobj
+24 0 obj
+<< /Length 1100 >>
+stream
+BT
+/F1 22 Tf
+200 780 Td
+(SUMARIO) Tj
+/F3 11 Tf
+50 730 Td
+(1. Introducao .............................. Pag 3) Tj
+50 710 Td
+(2. Como Jogar - Tutorial Completo ......... Pag 4) Tj
+50 690 Td
+(3. Sistema de Classes ..................... Pag 6) Tj
+50 670 Td
+(4. Habilidades por Classe ................. Pag 8) Tj
+50 650 Td
+(5. Sistema de Combate .................... Pag 12) Tj
+50 630 Td
+(6. Sistema Elemental ..................... Pag 14) Tj
+50 610 Td
+(7. Sistema de Buffs e Debuffs ............ Pag 15) Tj
+50 590 Td
+(8. Sistema de Inventario ................. Pag 17) Tj
+50 570 Td
+(9. Sistema de Sobrevivencia .............. Pag 19) Tj
+50 550 Td
+(10. Loja e Economia ...................... Pag 21) Tj
+50 530 Td
+(11. Exploracao e Mapa .................... Pag 23) Tj
+50 510 Td
+(12. Sistema de Quests .................... Pag 25) Tj
+50 490 Td
+(13. Eventos Aleatorios ................... Pag 26) Tj
+50 470 Td
+(14. Save System .......................... Pag 27) Tj
+50 450 Td
+(15. Dicas e Estrategias .................. Pag 28) Tj
+50 430 Td
+(16. Tabelas de Referencia ................ Pag 31) Tj
+50 410 Td
+(17. Curiosidades ......................... Pag 33) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 25 0 R /Resources << /Font << /F1 21 0 R /F2 22 0 R /F3 23 0 R >> >> >>
+endobj
+25 0 obj
+<< /Length 1400 >>
+stream
+BT
+/F1 22 Tf
+180 780 Td
+(1. INTRODUCAO) Tj
+/F2 13 Tf
+50 740 Td
+(Bem-vindo a Sombras de Valdoria!) Tj
+/F3 10 Tf
+50 710 Td
+(Sombras de Valdoria e um RPG de texto profissional desenvolvido) Tj
+50 695 Td
+(inteiramente em Portugol Studio. Neste jogo, voce explorara) Tj
+50 680 Td
+(masmo
