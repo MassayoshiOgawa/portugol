@@ -1,15 +1,61 @@
 programa
 {
+	inclua biblioteca Matematica
+	funcao inicio(){
+		logico terminar = falso
+		cadeia pause = ""
+		inteiro choose = 0
+		enquanto(terminar == falso){
+			inteiro hp = 2
+			inteiro atk = 3
+			inteiro int = 1
+			limpa()
+			escreva("Rpg Class Calc\n")
+			escreva("Escolha a classe: \n")
+			escreva("[1] Guerreiro\n")
+			escreva("[2] Arqueiro\n")
+			escreva("[3] Mago\n")
+			escreva("[4] Sacerdote\n")
+			leia(choose)
+
+			escolha(choose){
+				caso 1:
+					hp = 3
+					atk = 2
+					int = 1
+					pare
+				caso 2:
+					hp = 1
+					atk = 3
+					int = 2
+					pare
+				caso 3:
+					hp = 2
+					atk = 1
+					int = 3
+				caso 4:
+					hp = 2
+					atk = 1
+					int = 3
+			}
 	
-	funcao inicio()
-	{
-		inteiro num = 1
-		inteiro numero = 0
-		enquanto(numero != 0){
-			leia(numero)
-			num+= 1
+			const inteiro mult = 1
+	
+			real hpFinal = 0.0
+			real atkFinal = 0.0
+			real intFinal = 0.0
+	
+			para(inteiro i = 0; i < 50; i++){
+				hpFinal += hp
+				atkFinal += atk
+				intFinal += int
+			}
+			escreva("Pontos: ", "\n")
+			escreva(hpFinal, "\n")
+			escreva(atkFinal, "\n")
+			escreva(intFinal, "\n")
+			leia(pause)
 		}
-		escreva("Quantidade de números digitados: ", num)
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -17,7 +63,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 94; 
+ * @POSICAO-CURSOR = 666; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
