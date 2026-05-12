@@ -17,10 +17,10 @@ programa
 			int = 1
 			}
 			se(i == 2){
-				escreva("\nArqueiro: \n")
+			escreva("\nArqueiro: \n")
 			hp = 2
-			atk = 3
-			int = 2
+			atk = 4
+			int = 1
 			}
 			se(i == 3){
 			escreva("\nMago: \n")
@@ -58,7 +58,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 800; 
+ * @POSICAO-CURSOR = 547; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
