@@ -3,7 +3,13 @@ programa
 	
 	funcao inicio()
 	{
-		escreva("Olá Mundo")
+		inteiro num = 0
+		inteiro numero = 1
+		enquanto(numero != 0){
+			leia(numero)
+			num+= 1
+		}
+		escreva("Quantidade de números digitados: ", num)
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -11,7 +17,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 12; 
+ * @POSICAO-CURSOR = 55; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

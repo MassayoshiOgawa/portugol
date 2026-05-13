@@ -1,7 +1,7 @@
 programa
 {
-	inclua biblioteca Matematica
-	funcao inicio(){
+	inclua biblioteca Matematica
+	funcao inicio(){
 		logico terminar = falso
 		cadeia pause = ""
 		inteiro choose = 0

@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual do Criador de RPG - Sombras de Valdoria</title>
+<style>
+:root {
+  --bg-primary: #0f0b14;
+  --bg-secondary: #1a1423;
+  --bg-card: #231c31;
+  --bg-code: #16111f;
+  --text-primary: #f0e6d3;
+  --text-secondary: #b8a9c9;
+  --text-muted: #7a6b8c;
+  --accent-gold: #d4a534;
+  --accent-gold-light: #f0c850;
+  --accent-glow: rgba(212,165,52,.15);
+  --accent-purple: #8b5cf6;
+  --accent-red: #ef4444;
+  --accent-green: #22c55e;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --border-color: rgba(212,165,52,.15);
+  --border-glow: rgba(212,165,52,.3);
+  --font-serif: 'Georgia','Times New Roman',serif;
+  --font-mono: 'Consolas','Courier New',monospace;
+  --radius: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,.4);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-serif);background:var(--bg-primary);color:var(--text-primary);line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg-primary)}
+::-webkit-scrollbar-thumb{background:var(--accent-gold);border-radius:4px}
+
+/* PARTICLES BG */
+#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* SIDE NAV */
+.side-nav{position:fixed;top:50%;right:24px;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:6px}
+.side-nav a{width:12px;height:12px;border-radius:50%;background:var(--text-muted);border:2px solid transparent;transition:all .3s;text-decoration:none;position:relative}
+.side-nav a:hover,.side-nav a.active{background:var(--accent-gold);border-color:var(--accent-gold);box-shadow:0 0 12px var(--accent-gold)}
+.side-nav a .tooltip{position:absolute;right:20px;top:50%;transform:translateY(-50%);background:var(--bg-card);color:var(--text-primary);padding:4px 12px;border-radius:4px;font-size:11px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s;border:1px solid var(--border-color)}
+.side-nav a:hover .tooltip{opacity:1}
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;background:linear-gradient(180deg,transparent 0%,var(--bg-primary) 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,var(--accent-glow) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-block;padding:6px 20px;border:1px solid var(--accent-gold);border-radius:20px;color:var(--accent-gold);font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;font-family:var(--font-mono)}
+.hero h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:900;color:var(--text-primary);text-shadow:0 0 40px var(--accent-glow),0 0 80px rgba(212,165,52,.1);margin-bottom:8px;letter-spacing:2px}
+.hero h1 span{color:var(--accent-gold)}
+.hero .subtitle{font-size:clamp(1rem,2vw,1.3rem);color:var(--text-secondary);max-width:700px;margin-bottom:16px}
+.hero .version{font-family:var(--font-mono);color:var(--text-muted);font-size:13px;margin-bottom:32px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.hero-cta a{padding:12px 32px;border-radius:var(--radius);text-decoration:none;font-weight:600;font-size:15px;transition:all .3s;font-family:var(--font-serif)}
+.hero-cta .btn-primary{background:linear-gradient(135deg,var(--accent-gold),#b8942a);color:var(--bg-primary);border:none;box-shadow:0 4px 20px rgba(212,165,52,.3)}
+.hero-cta .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,165,52,.4)}
+.hero-cta .btn-secondary{background:transparent;border:1px solid var(--accent-gold);color:var(--accent-gold)}
+.hero-cta .btn-secondary:hover{background:var(--accent-glow);transform:translateY(-2px)}
+.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);animation:bounce 2s infinite;color:var(--text-muted);font-size:24px;cursor:pointer}
+@keyframes bounce{0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)}40%{transform:translateX(-50%) translateY(-12px)}60%{transform:translateX(-50%) translateY(-6px)}}
+
+/* MAIN CONTENT */
+.main-content{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 24px 80px}
+
+/* SECTION */
+.section{margin-bottom:60px;opacity:0;transform:translateY(30px);transition:all .6s ease}
+.section.visible{opacity:1;transform:translateY(0)}
+.section-header{text-align:center;margin-bottom:40px}
+.section-number{display:inline-block;font-family:var(--font-mono);color:var(--accent-gold);font-size:13px;letter-spacing:2px;margin-bottom:8px}
+.section-header h2{font-size:clamp(1.6rem,3vw,2.2rem);color:var(--text-primary);position:relative;display:inline-block}
+.section-header h2::after{content:'';display:block;width:60px;height:3px;background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);margin:12px auto 0}
+.section-header p{color:var(--text-secondary);margin-top:12px;font-size:15px}
+
+/* CARDS */
+.card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius);padding:28px;margin-bottom:20px;transition:all .3s}
+.card:hover{border-color:var(--border-glow);box-shadow:0 8px 32px rgba(212,165,52,.08)}
+.card h3{color:var(--accent-gold);font-size:1.15rem;margin-bottom:12px}
+.card h4{color:var(--text-primary);font-size:1rem;margin-bottom:8px;margin-top:16px}
+.card p,.card li{color:var(--text-secondary);font-size:14px;line-height:1.7}
+.card ul{list-style:none;padding:0}
+.card ul li{padding:4px 0 4px 20px;position:relative}
+.card ul li::before{content:'\25B8';position:absolute;left:0;color:var(--accent-gold)}
+
+/* CLASS GRID */
+.class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:20px 0}
+.class-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius);overflow:hidden;transition:all .3s;cursor:pointer}
+.class-card:hover{border-color:var(--accent-gold);transform:translateY(-4px);box-shadow:0 12px 40px rgba(212,165,52,.12)}
+.class-card-header{padding:16px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border-color)}
+.class-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.class-card-header h3{margin:0;font-size:15px}
+.class-card-header .elem-tag{font-size:10px;padding:2px 8px;border-radius:10px;margin-left:auto}
+.class-skills{padding:12px 20px 16px;display:none}
+.class-skills.open{display:block}
+.skill-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:13px;color:var(--text-secondary);border-bottom:1px solid rgba(255,255,255,.05)}
+.skill-item:last-child{border:none}
+.skill-lvl{font-family:var(--font-mono);color:var(--accent-gold);font-size:11px;white-space:nowrap;min-width:28px;padding-top:1px}
+.skill-name{font-weight:600;color:var(--text-primary)}
+.skill-desc{color:var(--text-muted);font-size:12px;margin-top:2px}
+
+/* ELEMENT WHEEL */
+.element-wheel{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:20px 0}
+.elem-node{width:80px;height:80px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;font-weight:700;border:2px solid;transition:all .3s;cursor:default;position:relative}
+.elem-node .elem-icon{font-size:24px;margin-bottom:2px}
+.elem-node .elem-label{font-size:10px;opacity:.8}
+.elem-node:hover{transform:scale(1.1);box-shadow:0 0 30px currentColor}
+.elem-fogo{background:rgba(239,68,68,.15);border-color:#ef4444;color:#ef4444}
+.elem-gelo{background:rgba(59,130,246,.15);border-color:#3b82f6;color:#3b82f6}
+.elem-terra{background:rgba(34,197,94,.15);border-color:#22c55e;color:#22c55e}
+.elem-luz{background:rgba(234,179,8,.15);border-color:#eab308;color:#eab308}
+.elem-trevas{background:rgba(168,85,247,.15);border-color:#a855f7;color:#a855f7}
+.elem-raio{background:rgba(6,182,212,.15);border-color:#06b6d4;color:#06b6d4}
+.elem-neutral{background:rgba(156,163,175,.15);border-color:#9ca3af;color:#9ca3af}
+.element-arrow{display:flex;align-items:center;color:var(--text-muted);font-size:20px}
+
+/* CODE BLOCKS */
+.code-block{position:relative;background:var(--bg-code);border:1px solid var(--border-color);border-radius:var(--radius);margin:16px 0;overflow:hidden}
+.code-header{display:flex;align-items:center;padding:8px 16px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border-color);gap:8px}
+.code-header .lang-tag{font-family:var(--font-mono);font-size:11px;color:var(--accent-gold);text-transform:uppercase;letter-spacing:1px}
+.code-header .copy-btn{margin-left:auto;background:transparent;border:1px solid var(--border-color);color:var(--text-muted);padding:4px 12px;border-radius:4px;cursor:pointer;font-size:11px;transition:all .3s}
+.code-header .copy-btn:hover{color:var(--accent-gold);border-color:var(--accent-gold)}
+.code-block pre{overflow-x:auto;padding:16px;font-family:var(--font-mono);font-size:13px;line-height:1.6;color:var(--text-primary);tab-size:2}
+.code-block code .kw{color:#c792ea}
+.code-block code .fn{color:#82aaff}
+.code-block code .str{color:#c3e88d}
+.code-block code .num{color:#f78c6c}
+.code-block code .cm{color:#546e7a;font-style:italic}
+.code-block code .op{color:#89ddff}
+.code-block code .tp{color:#ffcb6b}
+.code-block code .var{color:#eeffff}
+
+/* STAT BARS */
+.stat-bar-wrap{margin:8px 0}
+.stat-bar-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;color:var(--text-secondary)}
+.stat-bar{height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.stat-bar-fill{height:100%;border-radius:4px;transition:width 1s ease;background:linear-gradient(90deg,var(--accent-gold),var(--accent-gold-light))}
+.stat-bar-fill.hp{background:linear-gradient(90deg,#ef4444,#f87171)}
+.stat-bar-fill.mp{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.stat-bar-fill.xp{background:linear-gradient(90deg,#a855f7,#c084fc)}
+.stat-bar-fill.stagger{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+
+/* TABLES */
+.rpg-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+.rpg-table th{padding:10px 14px;text-align:left;background:rgba(212,165,52,.1);color:var(--accent-gold);font-weight:600;border-bottom:2px solid var(--accent-gold)}
+.rpg-table td{padding:8px 14px;border-bottom:1px solid var(--border-color);color:var(--text-secondary)}
+.rpg-table tr:hover td{background:rgba(255,255,255,.02)}
+
+/* TABS */
+.tabs{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap}
+.tab-btn{padding:10px 20px;background:transparent;border:1px solid var(--border-color);border-bottom:none;border-radius:var(--radius) var(--radius) 0 0;color:var(--text-muted);cursor:pointer;font-family:var(--font-serif);font-size:13px;transition:all .3s}
+.tab-btn:hover{color:var(--text-primary);background:rgba(255,255,255,.02)}
+.tab-btn.active{background:var(--bg-card);color:var(--accent-gold);border-color:var(--border-glow)}
+.tab-content{background:var(--bg-card);border:1px solid var(--border-color);border-radius:0 var(--radius) var(--radius) var(--radius);padding:24px;display:none}
+.tab-content.active{display:block}
+
+/* TIPS */
+.tip{display:flex;gap:12px;padding:16px 20px;border-radius:var(--radius);margin:16px 0;border-left:4px solid}
+.tip-icon{font-size:20px;flex-shrink:0}
+.tip-content{font-size:13px;color:var(--text-secondary)}
+.tip-content strong{color:var(--text-primary)}
+.tip.dica{border-color:var(--accent-gold);background:rgba(212,165,52,.06)}
+.tip.dica .tip-icon{color:var(--accent-gold)}
+.tip.atencao{border-color:var(--accent-red);background:rgba(239,68,68,.06)}
+.tip.atencao .tip-icon{color:var(--accent-red)}
+.tip.curiosidade{border-color:var(--accent-cyan);background:rgba(6,182,212,.06)}
+.tip.curiosidade .tip-icon{color:var(--accent-cyan)}
+
+/* INFOGRAPHIC BAR */
+.infographic{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:20px 0}
+.infographic-item{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius);padding:20px;text-align:center;transition:all .3s}
+.infographic-item:hover{border-color:var(--accent-gold);transform:translateY(-2px)}
+.infographic-item .number{font-size:2rem;font-weight:900;color:var(--accent-gold);font-family:var(--font-mono);line-height:1}
+.infographic-item .label{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+/* PROGRESS PATH */
+.progress-path{position:relative;padding-left:40px;margin:24px 0}
+.progress-path::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:var(--border-color)}
+.progress-step{position:relative;margin-bottom:24px;padding-left:20px}
+.progress-step::before{content:'';position:absolute;left:-28px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--bg-card);border:2px solid var(--text-muted);transition:all .3s}
+.progress-step.active::before{background:var(--accent-gold);border-color:var(--accent-gold);box-shadow:0 0 12px var(--accent-gold)}
+.progress-step h4{color:var(--accent-gold);font-size:14px;margin-bottom:4px}
+.progress-step p{font-size:13px;color:var(--text-secondary)}
+.progress-step .step-detail{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+/* FOOTER */
+.footer{position:relative;z-index:1;text-align:center;padding:48px 24px;border-top:1px solid var(--border-color);color:var(--text-muted);font-size:13px;max-width:960px;margin:0 auto}
+.footer strong{color:var(--accent-gold)}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .side-nav{display:none}
+  .class-grid{grid-template-columns:1fr}
+  .element-wheel{gap:8px}
+  .elem-node{width:64px;height:64px;font-size:11px}
+  .hero{padding:1rem}
+  .tabs{flex-direction:column}
+  .tab-btn{border-radius:var(--radius);border-bottom:1px solid var(--border-color)}
+  .tab-btn.active{border-bottom-color:var(--accent-gold)}
+  .tab-content{border-radius:var(--radius)}
+}
+
+/* PRINT */
+@media print{
+  #particles-canvas{display:none}
+  .side-nav{display:none}
+  .hero{min-height:auto;padding:2rem}
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<nav class="side-nav" id="sideNav"></nav>
+
+<section class="hero">
+  <div class="hero-badge">Manual do Criador</div>
+  <h1>Sombras de <span>Valdoria</span></h1>
+  <p class="subtitle">Aprenda a criar um sistema de RPG completo do zero — das classes ao balanceamento — com código traduzido para Roblox Studio.</p>
+  <p class="version">Baseado no código gerado por IA em Portugol Studio &bull; v1.0</p>
+  <div class="hero-cta">
+    <a href="#intro" class="btn-primary">Começar a Leitura</a>
+    <a href="#codigo" class="btn-secondary">Ver Código Fonte</a>
+  </div>
+  <div class="scroll-indicator">&#x25BC;</div>
+</section>
+
+<div class="main-content">
+
+<!-- INTRO -->
+<section id="intro" class="section">
+  <div class="section-header">
+    <span class="section-number">INTRODUÇÃO</span>
+    <h2>Bem-vindo, Criador de Mundos</h2>
+    <p>Este manual foi criado para transformar o sistema de RPG "Sombras de Valdoria" — originalmente gerado por inteligência artificial em Portugol Studio — em um guia prático que qualquer pessoa pode seguir para construir seu próprio RPG, inclusive no Roblox Studio.</p>
+  </div>
+
+  <div class="infographic">
+    <div class="infographic-item"><div class="number">8</div><div class="label">Classes Jogáveis</div></div>
+    <div class="infographic-item"><div class="number">5</div><div class="label">Habilidades por Classe</div></div>
+    <div class="infographic-item"><div class="number">6</div><div class="label">Elementos</div></div>
+    <div class="infographic-item"><div class="number">7</div><div class="label">Slots de Equipamento</div></div>
+    <div class="infographic-item"><div class="number">6</div><div class="label">Raridades de Item</div></div>
+    <div class="infographic-item"><div class="number">50</div><div class="label">Níveis Máximos</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Como usar este manual</h3>
+    <p>Cada capítulo aborda um pilar do sistema de RPG. No final de cada seção, você encontra exemplos de código em Portugol (o original gerado pela IA) e sua tradução comentada para <strong>Lua (Roblox Studio)</strong>. Siga na ordem ou salte para o tópico que mais te interessar.</p>
+  </div>
+
+  <div class="tip dica">
+    <div class="tip-icon">&#x1F4A1;</div>
+    <div class="tip-content"><strong>Dica:</strong> Leia o <a href="#codigo" style="color:var(--accent-gold)">Capítulo 10</a> para ver o código-fonte completo que a IA gerou. Use ele como referência enquanto lê os capítulos anteriores.</div>
+  </div>
+</section>
+
+<!-- CAP 1: CLASSES -->
+<section id="classes" class="section">
+  <div class="section-header">
+    <span class="section-number">CAPÍTULO 1</span>
+    <h2>Arquitetura de Classes</h2>
+    <p>O coração do seu RPG: 8 classes únicas, cada uma com 5 habilidades desbloqueáveis por nível (Level Cap 5).</p>
+  </div>
+
+  <div class="card">
+    <h3>Como funciona a progressão</h3>
+    <p>Cada classe começa no Nível 1 com sua primeira habilidade. A cada novo nível, uma habilidade adicional é desbloqueada, até chegar ao Nível 5 com todas as 5 habilidades disponíveis. O Level Cap inicial é 5, mas você pode expandir depois.</p>
+  </div>
+
+  <div class="class-grid" id="classGrid"></div>
+
+  <div class="card" style="margin-top:20px">
+    <h3>&#x2694; Código em Portugol — Estrutura de Habilidades</h3>
+    <div class="code-block">
+      <div class="code-header"><span class="lang-tag">Portugol</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div>
+      <pre><code><span class="cm">// Exemplo: Habilidades do Guerreiro (índices 0-4)</span>
+g_skill_nome[<span class="num">0</span>] = <span class="str">"Golpe Pesado"</span>
+g_skill_custo[<span class="num">0</span>] = <span class="num">10</span>          <span class="cm">// Custo de Mana</span>
+g_skill_cooldown[<span class="num">0</span>] = <span class="num">1</span>        <span class="cm">// Turns de recarga</span>
+g_skill_dano_mult[<span class="num">0</span>] = <span class="num">150</span>     <span class="cm">// 150% do dano base</span>
+g_skill_elemento[<span class="num">0</span>] = ELEM_NEUTRO
+
+<span class="cm">// Habilidade de buff (Postura Defensiva)</span>
+g_skill_nome[<span class="num">1</span>] = <span class="str">"Postura Defensiva"</span>
+g_skill_tipo[<span class="num">1</span>] = <span class="num">2</span>           <span class="cm">// Tipo 2 = Buff defensivo</span>
+g_skill_duracao[<span class="num">1</span>] = <span class="num">3</span>         <span class="cm">// Dura 3 turnos</span></code></pre>
+    </div>
+
+    <h4>&#x1F4BB; Traduzindo para Lua (Roblox Studio)</h4>
+    <div class="code-block">
+      <div class="code-header"><span class="lang-tag">Lua (Roblox)</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div>
+      <pre><code><span class="cm">-- Módulo de Habilidades - Guerreiro</span>
+<span class="kw">local</span> Skills = {
+    Guerreiro = {
+        [<span class="num">1</span>] = { <span class="cm">-- Nível 1</span>
+            nome = <span class="str">"Golpe Pesado"</span>,
+            custo = <span class="num">10</span>,
+            cooldown = <span class="num">1</span>,
+            multiplicador = <span class="num">1.5</span>,  <span class="cm">-- 150%</span>
+            elemento = <span class="str">"Neutro"</span>,
+            tipo = <span class="str">"dano"</span>
+        },
+        [<span class="num">2</span>] = { <span class="cm">-- Nível 2</span>
+            nome = <span class="str">"Postura Defensiva"</span>,
+            custo = <span class="num">18</span>,
+            cooldown = <span class="num">5</span>,
+            reducao_dano = <span class="num">0.4</span>, <span class="cm">-- 40%</span>
+            duracao = <span class="num">3</span>,
+            tipo = <span class="str">"buff"</span>
+        }
+    }
+}
+
+<span class="kw">function</span> usarHabilidade(jogador, classeIndex, nivel)
+    <span class="kw">local</span> skill = Skills[classeIndex][nivel]
+    <span class="kw">if</span> jogador.Mana &gt;= skill.custo <span class="kw">then</span>
+        <span class="cm">-- Aplica efeito</span>
+        aplicarEfeito(jogador, skill)
+    <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 2: COMBATE -->
+<section id="combate" class="section">
+  <div class="section-header">
+    <span class="section-number">CAPÍTULO 2</span>
+    <h2>Engine de Combate</h2>
+    <p>Sistema de turnos, Stagger, durabilidade de armas e a IA dos inimigos.</p>
+  </div>
+
+  <div class="card">
+    <h3>Sistema de Turnos</h3>
+    <p>O combate é baseado em turnos com 4 ações principais:</p>
+    <ul>
+      <li><strong>[1] Atacar</strong> — Ataque básico com dano calculado dos atributos + arma</li>
+      <li><strong>[2] Habilidades</strong> — Sub-menu com as skills disponíveis da sua classe</li>
+      <li><strong>[3] Itens</strong> — Usar consumíveis do inventário</li>
+      <li><strong>[4] Fugir</strong> — Chance de escapar baseada na agilidade</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Barra de Stagger (Atordoamento)</h3>
+    <p>Inimigos possuem uma barra de resistência (Stagger). Cada ataque reduz essa barra. Quando chega a zero:</p>
+    <ul>
+      <li>O inimigo <strong>pula o turno</strong> dele</li>
+      <li>O jogador causa <strong>dano crítico garantido</strong></li>
+      <li>A barra é resetada para o combate continuar</li>
+    </ul>
+    <div class="stat-bar-wrap" style="margin-top:16px">
+      <div class="stat-bar-label"><span>Stagger do Inimigo</span><span id="staggerLabel">75%</span></div>
+      <div class="stat-bar"><div class="stat-bar-fill stagger" id="staggerBar" style="width:75%"></div></div>
+    </div>
+    <button onclick="simularStagger()" style="background:transparent;border:1px solid var(--accent-gold);color:var(--accent-gold);padding:8px 16px;border-radius:4px;cursor:pointer;font-family:var(--font-serif);font-size:13px;margin-top:8px">Simular Ataque</button>
+  </div>
+
+  <div class="card">
+    <h3>Durabilidade de Armas</h3>
+    <p>Cada ataque reduz a durabilidade da arma. Se chegar a 0, o dano cai <strong>90%</strong> até ser reparada no Ferreiro. Os estados são:</p>
+    <div class="stat-bar-wrap">
+      <div class="stat-bar-label"><span>Durabilidade</span><span>100%</span></div>
+      <div class="stat-bar"><div class="stat-bar-fill" style="width:100%"></div></div>
+    </div>
+    <ul>
+      <li><strong>100%</strong> — Normal</li>
+      <li><strong>50%</strong> — Desgastada</li>
+      <li><strong>25%</strong> — Danificada</li>
+      <li><strong>0%</strong> — Quebrada (dano -90%)</li>
+    </ul>
+  </div>
+
+  <div class="tip curiosidade">
+    <div class="tip-icon">&#x2728;</div>
+    <div class="tip-content"><strong>Curiosidade:</strong> No código original da IA, a função <code style="color:var(--accent-gold)">calcular_ataque_total()</code> leva em conta: dano base da arma, força do personagem, bônus de equipamento, nível e refino. Tudo vira uma fórmula única!</div>
+  </div>
+</section>
+
+<!-- CAP 3: ELEMENTOS -->
+<section id="elementos" class="section">
+  <div class="section-header">
+    <span class="section-number">CAPÍTULO 3</span>
+    <h2>Sistema Elemental</h2>
+    <p>Fogo queima Gelo, Gelo congela Terra, Terra sepulta Fogo. Luz e Trevas em conflito eterno.</p>
+  </div>
+
+  <div class="card">
+    <h3>Círculo de Fraquezas</h3>
+    <p>O sistema possui 6 elementos com uma cadeia de fraquezas dupla: acertar uma fraqueza causa <strong>DANO DOBRADO (2x)</strong>, enquanto acertar uma resistência causa <strong>METADE DO DANO (0.5x)</strong>.</p>
+  </div>
+
+  <div class="element-wheel" id="elementWheel"></div>
+
+  <div class="card">
+    <h3>&#x2694; Código em Portugol — Verificação Elemental</h3>
+    <div class="code-block">
+      <div class="code-header"><span class="lang-tag">Portugol</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div>
+      <pre><code><span class="kw">funcao</span> <span class="fn">verificar_fracao_elemental</span>(<span class="tp">inteiro</span> atacante_elem, <span class="tp">inteiro</span> defensor_elem)
+    <span class="tp">real</span> multiplicador = <span class="num">1.0</span>
+    
+    <span class="cm">// Fraquezas (DANO DOBRADO)</span>
+    <span class="kw">se</span> (atacante_elem == ELEM_FOGO <span class="op">e</span> defensor_elem == ELEM_GELO)
+        multiplicador = <span class="num">2.0</span>
+    
+    <span class="cm">// Resistências (DANO REDUZIDO)</span>
+    <span class="kw">se</span> (defensor_elem == ELEM_FOGO <span class="op">e</span> atacante_elem == ELEM_GELO)
+        multiplicador = <span class="num">0.5</span>
+    
+    <span class="kw">retorne</span> multiplicador
+<span class="kw">fimfuncao</span></code></pre>
+    </div>
+
+    <h4>&#x1F4BB; Em Lua para Roblox</h4>
+    <div class="code-block">
+      <div class="code-header"><span class="lang-tag">Lua (Roblox)</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div>
+      <pre><code><span class="kw">local</span> ELEMENTOS = {
+    FOGO = <span class="str">"Fogo"</span>,   GELO = <span class="str">"Gelo"</span>,
+    TERRA = <span class="str">"Terra"</span>,  LUZ = <span class="str">"Luz"</span>,
+    TREVAS = <span class="str">"Trevas"</span>, RAIO = <span class="str">"Raio"</span>
+}
+
+<span class="kw">local</span> fraquezas = {
+    [ELEMENTOS.FOGO]   = ELEMENTOS.GELO,
+    [ELEMENTOS.GELO]   = ELEMENTOS.TERRA,
+    [ELEMENTOS.TERRA]  = ELEMENTOS.FOGO,
+    [ELEMENTOS.LUZ]    = ELEMENTOS.TREVAS,
+    [ELEMENTOS.TREVAS] = ELEMENTOS.LUZ
+}
+
+<span class="kw">function</span> calcularMultiplicadorElemental(atkElem, defElem)
+    <span class="kw">if</span> fraquezas[atkElem] == defElem <span class="kw">then</span>
+        <span class="kw">return</span> <span class="num">2.0</span>  <span class="cm">-- Dano dobrado!</span>
+    <span class="kw">elseif</span> fraquezas[defElem] == atkElem <span class="kw">then</span>
+        <span class="kw">return</span> <span class="num">0.5</span>  <span class="cm">-- Resistência</span>
+    <span class="kw">end</span>
+    <span class="kw">return</span> <span class="num">1.0</span>
+<span class="kw">end</span></code></pre>
+    </div>
+  </div>
+
+  <div class="tip dica">
+    <div class="tip-icon">&#x1F4A1;</div>
+    <div class="tip-content"><strong>Dica de Balanceamento:</strong> No Roblox, você pode usar <strong>Attribute</strong> ou <strong>Configuration</strong> objects para armazenar os elementos e fraquezas de cada inimigo, facilitando a criação de novos monstros sem editar código.</div>
+  </div>
+</section>
+
+<!-- CAP 4: BUFFS -->
+<section id="buffs" class="section">
+  <div class="section-header">
+    <span class="section-number">CAPÍTULO 4</span>
+    <h2>Buffs, Debuffs e Efeitos</h2>
+    <p>Um sistema profissional de efeitos temporários baseado em duração por turnos.</p>
+  </div>
+
+  <div class="card">
+    <h3>Arquitetura de Efeitos</h3>
+    <p>Cada efeito possui: <strong>nome, duração (turnos), intensidade, tipo, origem, acumulável</strong> e <strong>prioridade</strong>. O sistema processa efeitos no início e fim de cada turno automaticamente.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab(this,'tabBuffs')">Buffs Positivos</button>
+    <button class="tab-btn" onclick="openTab(this,'tabDebuffs')">Debuffs Negativos</button>
+    <button class="tab-btn" onclick="openTab(this,'tabProcess')">Processamento</button>
+  </div>
+
+  <div id="tabBuffs" class="tab-content active">
+    <table class="rpg-table">
+      <tr><th>Buff</th><th>Efeito</th><th>Duração</th><th>Interações</th></tr>
+      <tr><td>Regeneração</td><td>Recupera % da vida por turno</td><td>3-5T</td><td>Floresta +50%, Queimadura reduz</td></tr>
+      <tr><td>Escudo</td><td>Absorve dano antes da vida</td><td>4T</td><td>Trevas causa +25% dano ao escudo</td></tr>
+      <tr><td>Fúria</td><td>+ATK, -DEF, +Crítico</td><td>4T</td><td>Vida baixa intensifica; causa Exaustão ao fim</td></tr>
+      <tr><td>Velocidade</td><td>+Esquiva, chance de turno extra</td><td>3T</td><td>Gelo reduz; Raio fortalece</td></tr>
+      <tr><td>Invisibilidade</td><td>100% evasão (quebra ao atacar)</td><td>1-2T</td><td>Escuridão aumenta; Luz remove</td></tr>
+      <tr><td>Resistência Elemental</td><td>Reduz dano elemental específico</td><td>Variável</td><td>Não acumula com igual; diferentes coexistem</td></tr>
+      <tr><td>Vampirismo</td><td>Parte do dano vira cura</td><td>Variável</td><td>Luz reduz; Trevas fortalece</td></tr>
+    </table>
+  </div>
+
+  <div id="tabDebuffs" class="tab-content">
+    <table class="rpg-table">
+      <tr><th>Debuff</th><th>Efeito</th><th>Duração</th><th>Origem</th></tr>
+      <tr><td>Veneno</td><td>5% da vida por turno</td><td>5T</td><td>Ladino (Nv 4)</td></tr>
+      <tr><td>Queimadura</td><td>Dano de fogo contínuo</td><td>3T</td><td>Ataques de Fogo</td></tr>
+      <tr><td>Sangramento</td><td>Dano físico contínuo</td><td>3T</td><td>Ataques críticos</td></tr>
+      <tr><td>Maldição</td><td>+50% dano recebido</td><td>3T</td><td>Necromante (Nv 3)</td></tr>
+      <tr><td>Exaustão</td><td>-50% atributos</td><td>Até comer</td><td>Fome = 0</td></tr>
+    </table>
+  </div>
+
+  <div id="tabProcess" class="tab-content">
+    <div class="progress-path">
+      <div class="progress-step active">
+        <h4>Início do Turno</h4>
+        <p>Aplicar dano contínuo (veneno, queimadura), aplicar regeneração, verificar cooldowns, atualizar duração</p>
+      </div>
+      <div class="progress-step active">
+        <h4>Durante o Turno</h4>
+        <p>Ações do jogador/inimigo consideram buffs ativos (ex: Escudo absorve dano)</p>
+      </div>
+      <div class="progress-step active">
+        <h4>Fim do Turno</h4>
+        <p>Reduzir duração dos efeitos, remover efeitos expirados, processar efeitos finais</p>
+      </div>
+      <div class="progress-step">
+        <h4>Efeito Expirado</h4>
+        <p>Quando duração &le; 0: remove buff/debuff e exibe mensagem "[Efeito Encerrado] Fúria terminou."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 5: SOBREVIVENCIA -->
+<section id="sobrevivencia" class="section">
+  <div class="section-header">
+    <span class="section-number">CAPÍTULO 5</span>
+    <h2>Sobrevivência e Mundo</h2>
+    <p>Ciclo dia/noite, fome, ambientes e como eles afetam a jogabilidade.</p>
+  </div>
+
+  <div class="card">
+    <h3>&#x2600; Ciclo Dia/Noite</h3>
+    <p>A cada <strong>5 ações</strong> do jogador, o tempo muda. Isso afeta diretamente a dificuldade:</p>
+    <ul>
+      <li><strong>&#x2600; Dia:</strong> Inimigos normais, preços padrão</li>
+      <li><strong>&#x1F319; Noite:</strong> Inimigos +30% de dano, mas concedem +50% de XP. Itens de cura 25% mais caros, itens de Trevas 20% mais baratos</li>
+      <li><strong>&#x1F479; Mercador Negro:</strong> Aparece apenas à noite com itens raros e perigosos</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>&#x1F354; Sistema de Fome</h3>
+    <p>Variável de 0 a 100 que diminui com o tempo. Se chegar a 0, o jogador fica <strong>Exausto</strong>, perdendo 50% de todos os atributos. Coma para sobreviver!</p>
+    <div class="stat-bar-wrap">
+      <div class="stat-bar-label"><span>Fome</span><span id="fomeLabel">100%</span></div>
+      <div class="stat-bar"><div class="stat-bar-fill" id="fomeBar" style="width:100%;background:linear-gradient(90deg,#f59e0b,#fbbf24)"></div></div>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted)">Alimentos: Pão Velho (+15 Fome, 10g) | Ração de Viagem (+60 Fome, 35g)</p>
+  </div>
+
+  <div class="card">
+    <h3>&#x1F3DE; Ambientes</h3>
+    <p>Habilidades especiais podem mudar o ambiente da batalha, aplicando buffs e debuffs:</p>
+    <ul>
+      <li><strong>Nevasca (Mago Nv 3):</strong> Ambiente Gelo — reduz precisão do inimigo em 30%</li>
+      <li><strong>Bomba de Fumaça (Ladino Nv 3):</strong> Ambiente Escuridão — jogador não pode ser atingido no próximo turno</li>
+      <li><strong>Crescimento Exuberante (Druida Nv 3):</strong> Ambiente Floresta — regenera 10% de vida por turno</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CAP 6: ECONOMIA -->
+<section id="economia" class="section">
+  <div class="section-header">
+    <span class="section-number">CAPÍTULO 6</span>
+    <h2>Economia e Loja</h2>
+    <p>Um ecossistema vivo de compra e venda com inflação noturna, reputação e o misterioso Mercador Negro.</p>
+  </div>
+
+  <div class="infographic">
+    <div class="infographic-item"><div class="number">10g</div><div class="label">Pão Velho</div></div>
+    <div class="infographic-item"><div class="number">25g</div><div class="label">Poção de Vida P</div></div>
+    <div class="infographic-item"><div class="number">100g</div><div class="label">Refino +1</div></div>
+    <div class="infographic-item"><div class="number">750g</div><div class="label">Coração de Fênix</div></div>
+    <div class="infographic-item"><div class="number">2500g</div><div class="label">Refino +5</div></div>
+    <div class="infographic-item"><div class="number">20%</div><div class="label">Desconto Máximo</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab(this,'tabLoja')">Itens da Loja</button>
+    <button class="tab-btn" onclick="openTab(this,'tabFerreiro')">Ferreiro</button>
+    <button class="tab-btn" onclick="openTab(this,'tabMercador')">Mercador Negro</button>
+  </div>
+
+  <div id="tabLoja" class="tab-content active">
+    <table class="rpg-table">
+      <tr><th>Item</th><th>Preço</th><th>Efeito</th><th>Nível</th></tr>
+      <tr><td>Pão Velho</td><td>10g</td><td>+15 Fome</td><td>1</td></tr>
+      <tr><td>Ração de Viagem</td><td>35g</td><td>+60 Fome</td><td>1</td></tr>
+      <tr><td>Poção de Vida P</td><td>25g</td><td>+30 HP</td><td>1</td></tr>
+      <tr><td>Poção de Mana P</td><td>25g</td><td>+30 MP</td><td>1</td></tr>
+      <tr><td>Elixir de Adrenalina</td><td>50g</td><td>+20 Stamina</td><td>1</td></tr>
+      <tr><td>Poção de Vida M</td><td>60g</td><td>+80 HP</td><td>3</td></tr>
+      <tr><td>Pedra de Amolar</td><td>80g</td><td>100% Reparo</td><td>2</td></tr>
+      <tr><td>Bomba de Luz</td><td>120g</td><td>Stun + Luz</td><td>3</td></tr>
+      <tr><td>Amuleto da Sorte</td><td>300g</td><td>+30% Ouro</td><td>4</td></tr>
+      <tr><td>Coração de Fênix</td><td>750g</td><td>Revive 1x</td><td>5</td></tr>
+    </table>
+  </div>
+
+  <div id="tabFerreiro" class="tab-content">
+    <table class="rpg-table">
+      <tr><th>Serviço</th><th>Custo</th><th>Bônus</th><th>Nível</th></tr>
+      <tr><td>Reparo</td><td>Durab_Perdida &times; 0.5</td><td>Restaura durabilidade</td><td>1</td></tr>
+      <tr><td>Refino +1</td><td>100g</td><td>+10% Dano</td><td>1</td></tr>
+      <tr><td>Refino +2</td><td>250g</td><td>+25% Dano</td><td>2</td></tr>
+      <tr><td>Refino +3</td><td>500g</td><td>+40% Dano + Elemento</td><td>3</td></tr>
+      <tr><td>Refino +4</td><td>1000g</td><td>+60% Dano</td><td>4</td></tr>
+      <tr><td>Refino +5</td><td>2500g</td><td>+100% Dano, Inquebrável</td><td>5</td></tr>
+    </table>
+  </div>
+
+  <div id="tabMercador" class="tab-content">
+    <div class="tip atencao">
+      <div class="tip-icon">&#x1F479;</div>
+      <div class="tip-content"><strong>Atenção criador:</strong> O Mercador Negro <strong>só aparece à noite</strong>. No Roblox, use um detector de <em>Lighting.ClockTime</em> para ativar/desativar o NPC.</div>
+    </div>
+    <table class="rpg-table">
+      <tr><th>Item</th><th>Preço</th><th>Efeito</th><th>Nível</th></tr>
+      <tr><td>Sangue de Demônio</td><td>150g</td><td>+50% ATK, -5 HP/turno</td><td>3</td></tr>
+      <tr><td>Capa de Invisibilidade</td><td>400g</td><td>Fuga 100%</td><td>4</td></tr>
+      <tr><td>Pergaminho Proibido</td><td>1000g</td><td>Reseta Cooldowns</td><td>5</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>Sistema de Reputação</h3>
+    <p>A cada <strong>500 moedas gastas</strong>, o jogador ganha <strong>5% de desconto permanente</strong> (cumulativo até 20%). Para vender itens: comuns valem 30% do valor de compra, raros 50%.</p>
+  </div>
+</section>
+
+<!-- CAP 7: INVENTARIO -->
+<section id="inventario" class="section">
+  <div class="section-header">
+    <span class="section-number">CAPÍTULO 7</span>
+    <h2>Inventário e Itens</h2>
+    <p>Peso, slots, raridades, equipamentos e loot procedural — seu inventário é parte da estratégia.</p>
+  </div>
+
+  <div class="card">
+    <h3>Limites do Inventário</h3>
+    <div class="infographic" style="grid-template-columns:repeat(3,1fr)">
+      <div class="infographic-item"><div class="number">30</div><div class="label">Slots Máximos</div></div>
+      <div class="infographic-item"><div class="number">50</div><div class="label">Peso Base (kg)</div></div>
+      <div class="infographic-item"><div class="number">10</div><div class="label">Qtd Máx por Pilha</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Estados de Peso</h3>
+    <table class="rpg-table">
+      <tr><th>Estado</th><th>Carga</th><th>Penalidades</th></tr>
+      <tr><td>Leve</td><td>0% - 50%</td><td>Nenhuma</td></tr>
+      <tr><td>Médio</td><td>51% - 80%</td><td>-10% Velocidade</td></tr>
+      <tr><td>Pesado</td><td>81% - 99%</td><td>-25% Velocidade, -15% Esquiva</td></tr>
+      <tr><td>Sobrecarregado</td><td>100%+</td><td>-50% Vel., sem Esquiva, sem Fuga</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Loot Procedural</h3>
+    <p>O sistema gera itens automaticamente usando o formato: <strong>[Prefixo] + [Tipo] + [Elemento] + [Raridade]</strong></p>
+    <p style="color:var(--accent-gold);margin:12px 0;font-family:var(--font-mono);font-size:14px">"Espada Flamejante Rara" &bull; "Arco Sombrio Épico" &bull; "Amuleto Glacial Lendário"</p>
+    <p>Os bônus possíveis incluem: crítico, vampirismo, resistência elemental, regeneração, bônus de ouro e bônus de XP.</p>
+  </div>
+
+  <div class="tip dica">
+    <div class="tip-icon">&#x1F4A1;</div>
+    <div class="tip-content"><strong>Dica para Roblox:</strong> Use <strong>ModuleScripts</strong> para definir a tabela de itens (<code style="color:var(--accent-gold)">ItemConfig</code>) e <strong>Folder</strong> objects com <strong>IntValue</strong>, <strong>StringValue</strong> para equipamentos no workspace. O sistema de peso pode ser implementado com <strong>NumberValue</strong> no jogador.</div>
+  </div>
+</section>
+
+<!-- CAP 8: BALANCEAMENTO -->
+<section id="balanceamento" class="section">
+  <div class="section-header">
+    <span class="section-number">CAPÍTULO 8</span>
+    <h2>Balanceamento de Jogo</h2>
+    <p>A arte de equilibrar números para que o jogo seja desafiante mas justo.</p>
+  </div>
+
+  <div class="card">
+    <h3>Fórmulas Principais</h3>
+    <p>No código da IA, todas as fórmulas de balanceamento estão centralizadas em funções específicas. Veja as principais:</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab(this,'tabFormulas')">Fórmulas</button>
+    <button class="tab-btn" onclick="openTab(this,'tabLimites')">Limites (Hard Caps)</button>
+    <button class="tab-btn" onclick="openTab(this,'tabDicas')">Dicas de Balanceamento</button>
+  </div>
+
+  <div id="tabFormulas" class="tab-content active">
+    <table class="rpg-table">
+      <tr><th>Atributo</th><th>Fórmula</th></tr>
+      <tr><td>HP Máximo</td><td>100 + (Vitalidade &times; 15) + (Bônus Equip &times; 15) + (Nível &times; 12)</td></tr>
+      <tr><td>Mana Máxima</td><td>50 + (Inteligência &times; 8) + (Bônus Equip &times; 8) + (Nível &times; 10)</td></tr>
+      <tr><td>Ataque Total</td><td>Dano Arma + (Força &times; 1.8) + Bônus Equip + (Nível &times; 8) + Bônus Refino (%)</td></tr>
+      <tr><td>Defesa Total</td><td>Defesa Base + Armadura + Bônus Equip + (Nível &times; 7)</td></tr>
+      <tr><td>Redução de Dano</td><td>Defesa &times; 0.35 <span style="color:var(--text-muted)">(limitado a 80%)</span></td></tr>
+      <tr><td>XP para Próximo Nível</td><td>100 &times; 1.45<sup>nível</sup></td></tr>
+      <tr><td>Peso Máximo</td><td>30 + (Força &times; 1.5)</td></tr>
+    </table>
+
+    <h4 style="margin-top:20px">&#x2694; Código em Portugol — Cálculo de Ataque</h4>
+    <div class="code-block">
+      <div class="code-header"><span class="lang-tag">Portugol</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div>
+      <pre><code><span class="kw">funcao</span> <span class="fn">calcular_ataque_total</span>()
+    <span class="tp">inteiro</span> base = g_arma_dano + (g_forca * <span class="num">1.8</span>) + (g_equip_forca * <span class="num">1.8</span>)
+    <span class="tp">inteiro</span> bonus_nivel = g_nivel * <span class="num">8</span>
+    <span class="tp">inteiro</span> refino_bonus = <span class="num">0</span>
+    
+    <span class="kw">se</span> (g_arma_nivel_refino == <span class="num">1</span>) refino_bonus = <span class="num">10</span>
+    <span class="kw">senao se</span> (g_arma_nivel_refino == <span class="num">2</span>) refino_bonus = <span class="num">25</span>
+    <span class="kw">senao se</span> (g_arma_nivel_refino == <span class="num">3</span>) refino_bonus = <span class="num">40</span>
+    <span class="kw">senao se</span> (g_arma_nivel_refino == <span class="num">4</span>) refino_bonus = <span class="num">60</span>
+    <span class="kw">senao se</span> (g_arma_nivel_refino == <span class="num">5</span>) refino_bonus = <span class="num">100</span>
+    
+    <span class="tp">inteiro</span> total = base + bonus_nivel + (base * refino_bonus / <span class="num">100</span>)
+    <span class="kw">retorne</span> total
+<span class="kw">fimfuncao</span></code></pre>
+    </div>
+  </div>
+
+  <div id="tabLimites" class="tab-content">
+    <p style="margin-bottom:12px">Para evitar números absurdos, a IA implementou <strong>Hard Caps</strong> (limites máximos):</p>
+    <table class="rpg-table">
+      <tr><th>Limite</th><th>Valor Máx</th><th>Propósito</th></tr>
+      <tr><td>Redução de Dano</td><td>80%</td><td>Jogador nunca fica imune</td></tr>
+      <tr><td>Chance Crítica</td><td>80%</td><td>Sempre há chance de não crítico</td></tr>
+      <tr><td>Esquiva</td><td>75%</td><td>Inimigos sempre podem acertar</td></tr>
+      <tr><td>Roubo de Vida</td><td>50%</td><td>Evita cura infinita</td></tr>
+      <tr><td>Regeneração</td><td>15%</td><td>Por turno, da vida máxima</td></tr>
+      <tr><td>Stun</td><td>2 turnos</td><td>Máximo de atordoamento consecutivo</td></tr>
+    </table>
+
+    <div class="tip atencao">
+      <div class="tip-icon">&#x26A0;</div>
+      <div class="tip-content"><strong>Atenção:</strong> Hard caps são <strong>essenciais</strong> em qualquer RPG. Sem eles, um jogador pode acumular bônus e se tornar invencível, quebrando a diversão. No Roblox, defina esses limites em um <code style="color:var(--accent-gold)">ModuleScript</code> de configuração global.</div>
+    </div>
+  </div>
+
+  <div id="tabDicas" class="tab-content">
+    <div class="card">
+      <h4>1. Progressão Exponencial de XP</h4>
+      <p>A fórmula <code style="color:var(--accent-gold)">xp = 100 * 1.45^nível</code> faz com que subir de nível fique cada vez mais difícil. No nível 1 você precisa de 145 XP, no nível 5 já são ~430 XP. Isso mantém o jogador engajado sem chegar ao topo rápido demais.</p>
+    </div>
+    <div class="card">
+      <h4>2. Inflação Noturna</h4>
+      <p>Durante a noite, itens de cura custam 25% a mais. Isso força o jogador a planejar: "Será que eu compro poções agora de dia, ou arrisco e espero?" Pequenas decisões como essa criam jogabilidade memorável.</p>
+    </div>
+    <div class="card">
+      <h4>3. Stagger como "Soft Enrage"</h4>
+      <p>A barra de Stagger impede que inimigos sejam永久mente atordoados. Cada vez que o Stagger zera, o inimigo volta mais forte. Isso evita a tática chata de "stunlock infinito".</p>
+    </div>
+    <div class="card">
+      <h4>4. Custo vs. Recompensa</h4>
+      <p>Habilidades como <strong>Sacrifício</strong> (Necromante) consomem vida do jogador para causar dano massivo. Isso cria momentos de tensão — "Será que vale a pena arriscar?" Num RPG do Roblox, essas habilidades geram os momentos mais épicos.</p>
+    </div>
+    <div class="card">
+      <h4>5. Multiplicadores e Sinergia</h4>
+      <p>Fúria (+ATK) combinado com Vampirismo (cura baseada no dano) é uma sinergia poderosa. Sempre teste combinações de buffs. Se uma combinação for forte demais, ajuste os multiplicadores ou adicione um conflito (ex: Fúria reduz a cura recebida).</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 9: ROBLOX -->
+<section id="roblox" class="section">
+  <div class="section-header">
+    <span class="section-number">CAPÍTULO 9</span>
+    <h2>Transição para Roblox Studio</h2>
+    <p>Como transformar o sistema de Portugol em um jogo funcional no Roblox Studio com Lua.</p>
+  </div>
+
+  <div class="card">
+    <h3>Mapeamento Conceitual</h3>
+    <table class="rpg-table">
+      <tr><th>Portugol (Original)</th><th>Lua / Roblox Studio</th></tr>
+      <tr><td>Registros (structs)</td><td>ModuleScripts com tabelas</td></tr>
+      <tr><td>Vetores paralelos</td><td>Array de dicionários</td></tr>
+      <tr><td>Funções separadas</td><td>ModuleScripts organizados por sistema</td></tr>
+      <tr><td><code>limpa()</code></td><td>GuiService:Clear() ou Frame.Visible = false</td></tr>
+      <tr><td><code>u.aguarde()</code></td><td>task.wait()</td></tr>
+      <tr><td>Ciclo Dia/Noite</td><td>Lighting.ClockTime</td></tr>
+      <tr><td>Input por número</td><td>GuiButton + eventos MouseButton1Click</td></tr>
+      <tr><td>Sistema de Salvamento</td><td>DataStoreService:SaveAsync()</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>&#x1F4BB; Exemplo: Sistema de Combate em Lua</h3>
+    <div class="code-block">
+      <div class="code-header"><span class="lang-tag">Lua (Roblox)</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div>
+      <pre><code><span class="cm">-- Módulo de Combate</span>
+<span class="kw">local</span> Combate = {}
+Combate.__index = Combate
+
+<span class="kw">function</span> Combate.novo(jogador, inimigo)
+    <span class="kw">local</span> self = setmetatable({}, Combate)
+    self.jogador = jogador
+    self.inimigo = inimigo
+    self.turno = <span class="num">1</span>
+    self.stagger = inimigo:GetAttribute(<span class="str">"StaggerMax"</span>) <span class="op">or</span> <span class="num">100</span>
+    self.staggerAtual = self.stagger
+    <span class="kw">return</span> self
+<span class="kw">end</span>
+
+<span class="kw">function</span> Combate:aplicarDano(alvo, dano, elemento)
+    <span class="kw">local</span> multiplicador = <span class="num">1.0</span>
+    <span class="kw">local</span> defesa = alvo:GetAttribute(<span class="str">"Defesa"</span>) <span class="op">or</span> <span class="num">0</span>
+    
+    <span class="cm">-- Verifica fraqueza elemental</span>
+    <span class="kw">local</span> elemAlvo = alvo:GetAttribute(<span class="str">"Elemento"</span>)
+    <span class="kw">if</span> elemento <span class="op">and</span> elemAlvo <span class="kw">then</span>
+        multiplicador = calcularMultiplicadorElemental(elemento, elemAlvo)
+    <span class="kw">end</span>
+    
+    <span class="cm">-- Redução de dano pela defesa (cap 80%)</span>
+    <span class="kw">local</span> reducao = math.min(defesa * <span class="num">0.35</span>, <span class="num">80</span>)
+    <span class="kw">local</span> danoFinal = math.max(<span class="num">1</span>, dano * multiplicador * (<span class="num">1</span> - reducao/<span class="num">100</span>))
+    
+    <span class="cm">-- Reduz stagger</span>
+    self.staggerAtual = math.max(<span class="num">0</span>, self.staggerAtual - danoFinal * <span class="num">0.2</span>)
+    <span class="kw">if</span> self.staggerAtual &lt;= <span class="num">0</span> <span class="kw">then</span>
+        <span class="cm">-- Atordoado!</span>
+        alvo:SetAttribute(<span class="str">"Atordoado"</span>, <span class="kw">true</span>)
+        self.staggerAtual = self.stagger
+    <span class="kw">end</span>
+    
+    <span class="kw">return</span> danoFinal
+<span class="kw">end</span>
+
+<span class="kw">return</span> Combate</code></pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Arquitetura Recomendada para Roblox</h3>
+    <table class="rpg-table">
+      <tr><th>Pasta / Módulo</th><th>Função</th></tr>
+      <tr><td><code>ServerScriptService.Systems.Classes</code></td><td>Definições de todas as 8 classes</td></tr>
+      <tr><td><code>ServerScriptService.Systems.Combate</code></td><td>Engine de combate completa</td></tr>
+      <tr><td><code>ServerScriptService.Systems.Elementos</code></td><td>Tabela de fraquezas elementais</td></tr>
+      <tr><td><code>ServerScriptService.Systems.Loja</code></td><td>Sistema de economia e loja</td></tr>
+      <tr><td><code>ServerScriptService.Systems.Inventario</code></td><td>Inventário, peso, loot</td></tr>
+      <tr><td><code>ServerScriptService.Systems.Efeitos</code></td><td>Buffs, debuffs, processamento</td></tr>
+      <tr><td><code>ReplicatedStorage.GUI</code></td><td>Interface do jogador (HUD, menus)</td></tr>
+    </table>
+  </div>
+
+  <div class="tip curiosidade">
+    <div class="tip-icon">&#x2728;</div>
+    <div class="tip-content"><strong>Curiosidade:</strong> No código original em Portugol, a IA usou <strong>vetores paralelos</strong> (múltiplos arrays com mesmo índice) para armazenar dados de itens, habilidades e inimigos. No Roblox, você pode usar <strong>tabelas Lua</strong> aninhadas ou <strong>Attributes</strong> nos Parts — bem mais organizado!</div>
+  </div>
+</section>
+
+<!-- CAP 10: CODIGO -->
+<section id="codigo" class="section">
+  <div class="section-header">
+    <span class="section-number">CAPÍTULO 10</span>
+    <h2>Código Fonte Gerado pela IA</h2>
+    <p>O código completo em Portugol Studio que serviu de base para este manual. Organizado, comentado e modular.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header"><span class="lang-tag">Portugol — Estrutura Principal</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div>
+    <pre><code><span class="cm">// ==========================================</span>
+<span class="cm">// SOMBRAS DE VALDORIA v1.0</span>
+<span class="cm">// RPG de Texto em Portugol Studio</span>
+<span class="cm">// Gerado por IA - Engenharia de Software</span>
+<span class="cm">// ==========================================</span>
+
+<span class="kw">programa</span>
+{
+    <span class="kw">inclua biblioteca</span> Util
+    <span class="kw">inclua biblioteca</span> Matematica
+    <span class="kw">inclua biblioteca</span> Tipos
+
+    <span class="cm">// 1. CONSTANTES</span>
+    <span class="kw">const</span> <span class="tp">cadeia</span> NOME_JOGO = <span class="str">"=== SOMBRAS DE VALDORIA ==="</span>
+    <span class="kw">const</span> <span class="tp">inteiro</span> LEVEL_MAX = <span class="num">50</span>
+    <span class="kw">const</span> <span class="tp">inteiro</span> LEVEL_CAP_INICIAL = <span class="num">5</span>
+    <span class="kw">const</span> <span class="tp">inteiro</span> MAX_BUFFS = <span class="num">10</span>
+    <span class="kw">const</span> <span class="tp">inteiro</span> MAX_SLOTS = <span class="num">30</span>
+    <span class="kw">const</span> <span class="tp">real</span> PESO_BASE = <span class="num">30.0</span>
+
+    <span class="cm">// Elementos</span>
+    <span class="tp">inteiro</span> ELEM_FOGO = <span class="num">1</span>
+    <span class="tp">inteiro</span> ELEM_GELO = <span class="num">2</span>
+    <span class="tp">inteiro</span> ELEM_TERRA = <span class="num">3</span>
+    <span class="tp">inteiro</span> ELEM_LUZ = <span class="num">4</span>
+    <span class="tp">inteiro</span> ELEM_TREVAS = <span class="num">5</span>
+    <span class="tp">inteiro</span> ELEM_RAIO = <span class="num">6</span>
+
+    <span class="cm">// Classes</span>
+    <span class="tp">inteiro</span> CLS_GUERREIRO = <span class="num">1</span>
+    <span class="tp">inteiro</span> CLS_MAGO = <span class="num">2</span>
+    <span class="tp">inteiro</span> CLS_LADINO = <span class="num">3</span>
+    <span class="tp">inteiro</span> CLS_PALADINO = <span class="num">4</span>
+    <span class="tp">inteiro</span> CLS_ARQUEIRO = <span class="num">5</span>
+    <span class="tp">inteiro</span> CLS_DRUIDA = <span class="num">6</span>
+    <span class="tp">inteiro</span> CLS_NECROMANTE = <span class="num">7</span>
+    <span class="tp">inteiro</span> CLS_MONGE = <span class="num">8</span>
+
+    <span class="cm">// ... (código completo no arquivo original)</span>
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h3>Funções Principais</h3>
+    <p>O código é modular com estas funções principais, cada uma responsável por um sistema:</p>
+    <table class="rpg-table">
+      <tr><th>Função</th><th>Sistema</th><th>Descrição</th></tr>
+      <tr><td><code>inicializar_jogo()</code></td><td>Setup</td><td>Inicializa habilidades, loja, eventos e quests</td></tr>
+      <tr><td><code>menu_principal()</code></td><td>Navegação</td><td>Menu central do jogo</td></tr>
+      <tr><td><code>gerar_combate()</code></td><td>Combate</td><td>Engine de combate turno a turno</td></tr>
+      <tr><td><code>loja()</code></td><td>Economia</td><td>Sistema de compra e venda</td></tr>
+      <tr><td><code>ferreiro()</code></td><td>Upgrade</td><td>Reparo e refino de armas</td></tr>
+      <tr><td><code>check_lvl()</code></td><td>Progressão</td><td>Verifica e aplica level up</td></tr>
+      <tr><td><code>adicionar_item()</code></td><td>Inventário</td><td>Adiciona item com verificação de peso/slots</td></tr>
+      <tr><td><code>aplicar_buff()</code>/<code>aplicar_debuff()</code></td><td>Efeitos</td><td>Gerencia buffs e debuffs com duração</td></tr>
+      <tr><td><code>salvar_jogo()</code>/<code>carregar_jogo()</code></td><td>Persistência</td><td>Save Code baseado em vetor de inteiros</td></tr>
+      <tr><td><code>gerar_loot()</code></td><td>Loot</td><td>Gera loot procedural com prefixo + tipo + raridade</td></tr>
+    </table>
+  </div>
+
+  <div class="tip dica">
+    <div class="tip-icon">&#x1F4A1;</div>
+    <div class="tip-content"><strong>Dica:</strong> O código completo gerado pela IA tem mais de <strong>2000 linhas</strong>! Para ver o arquivo original, abra <code style="color:var(--accent-gold)">Código gerado pelo Prompt.txt</code> na mesma pasta deste manual. Use ele como blueprint para criar sua própria versão no Roblox.</div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section id="final" class="section">
+  <div class="section-header">
+    <span class="section-number">CONCLUSÃO</span>
+    <h2>Seu RPG Começa Agora</h2>
+    <p>Você tem nas mãos todo o conhecimento necessário para criar um sistema de RPG completo, seja no Portugol Studio, no Roblox Studio ou em qualquer plataforma.</p>
+  </div>
+
+  <div class="infographic">
+    <div class="infographic-item"><div class="number">8</div><div class="label">Classes</div></div>
+    <div class="infographic-item"><div class="number">6</div><div class="label">Elementos</div></div>
+    <div class="infographic-item"><div class="number">10+</div><div class="label">Sistemas</div></div>
+    <div class="infographic-item"><div class="number">1</div><div class="label">Você, Criador</div></div>
+  </div>
+
+  <div class="card" style="text-align:center;padding:40px">
+    <h3 style="font-size:1.3rem">Próximos Passos</h3>
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:16px">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:13px;color:var(--text-secondary)">
+        <span>&#x2705; Escolha suas classes favoritas</span>
+        <span>&#x2705; Defina os elementos e fraquezas</span>
+        <span>&#x2705; Crie a engine de combate</span>
+        <span>&#x2705; Balanceie os números</span>
+        <span>&#x2705; Implemente no Roblox Studio</span>
+        <span>&#x2705; Teste, itere, divirta-se!</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer class="footer">
+  <p><strong>Sombras de Valdoria</strong> &mdash; Manual do Criador de RPG</p>
+  <p>Baseado no código gerado por IA em Portugol Studio &bull; Adaptado para Roblox Studio</p>
+  <p style="margin-top:8px">Criado com &#x1F49C; para a comunidade de desenvolvedores</p>
+</footer>
+
+<script>
+// PARTICLES
+(()=>{
+  const c = document.getElementById('particles-canvas');
+  const ctx = c.getContext('2d');
+  let p = [], w, h;
+  function rs(){w=c.width=innerWidth;h=c.height=innerHeight}
+  rs(); addEventListener('resize',rs);
+  for(let i=50;i--;) p.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,o:Math.random()*.5+.2});
+  function dr(){
+    ctx.clearRect(0,0,w,h);
+    for(let i of p){
+      i.x+=i.vx;i.y+=i.vy;
+      if(i.x<0)i.x=w;if(i.x>w)i.x=0;
+      if(i.y<0)i.y=h;if(i.y>h)i.y=0;
+      ctx.beginPath();ctx.arc(i.x,i.y,i.r,0,6);ctx.fillStyle=`rgba(212,165,52,${i.o})`;ctx.fill();
+    }
+    requestAnimationFrame(dr);
+  }
+  dr();
+})();
+
+// SIDE NAV
+(()=>{
+  const sections = document.querySelectorAll('.section');
+  const nav = document.getElementById('sideNav');
+  const labels = ['Intro','Classes','Combate','Elementos','Buffs','Sobrevivência','Economia','Inventário','Balanceamento','Roblox','Código','Conclusão'];
+  const ids = ['intro','classes','combate','elementos','buffs','sobrevivencia','economia','inventario','balanceamento','roblox','codigo','final'];
+  ids.forEach((id,i)=>{
+    const a = document.createElement('a');
+    a.href = `#${id}`;
+    a.innerHTML = `<span class="tooltip">${labels[i]}</span>`;
+    nav.appendChild(a);
+  });
+  const links = nav.querySelectorAll('a');
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const idx = [...sections].indexOf(entry.target);
+        if(links[idx]) links[idx].classList.add('active');
+      }
+    });
+  },{threshold:.3});
+  sections.forEach(s=>observer.observe(s));
+})();
+
+// SCROLL REVEAL
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1});
+document.querySelectorAll('.section').forEach(s=>observer.observe(s));
+
+// CLASS DATA
+const classes = [
+  {name:'Guerreiro',icon:'&#x2694;',color:'#ef4444',elem:'Neutro',focus:'Força Bruta e Resistência',
+    skills:[{lvl:1,name:'Golpe Pesado',desc:'150% do dano de ataque base'},{lvl:2,name:'Postura Defensiva',desc:'Reduz dano recebido em 40% por 3 turnos'},{lvl:3,name:'Grito de Guerra',desc:'Aumenta dano em 25% até o fim do combate'},{lvl:4,name:'Redemoinho',desc:'Dano fixo alto e reduz Stagger em 50%'},{lvl:5,name:'Execução',desc:'Se inimigo &lt;30% vida, causa 300% dano'}]},
+  {name:'Mago',icon:'&#x1F525;',color:'#3b82f6',elem:'Fogo/Gelo',focus:'Elementos e Controle',
+    skills:[{lvl:1,name:'Dardo Místico',desc:'Ignora 20% da defesa do inimigo'},{lvl:2,name:'Escudo Arcano',desc:'Absorve 50 de dano'},{lvl:3,name:'Nevasca',desc:'Muda ambiente para Gelo, -30% precisão inimiga'},{lvl:4,name:'Tempestade',desc:'200% do poder mágico em dano de Raio'},{lvl:5,name:'Dreno de Mana',desc:'Causa dano e recupera 50% do custo de Mana'}]},
+  {name:'Ladino',icon:'&#x1F5E1;',color:'#a855f7',elem:'Trevas',focus:'Crítico e Efeitos',
+    skills:[{lvl:1,name:'Punhalada',desc:'50% de chance de crítico (2x dano)'},{lvl:2,name:'Esquiva',desc:'+40% chance de inimigo errar por 2 turnos'},{lvl:3,name:'Bomba de Fumaça',desc:'Escuridão — jogador não é atingido no próximo turno'},{lvl:4,name:'Veneno',desc:'5% da vida do inimigo por turno'},{lvl:5,name:'Assalto',desc:'Rouba ouro e cura 15% da vida'}]},
+  {name:'Paladino',icon:'&#x1F54A;',color:'#eab308',elem:'Luz',focus:'Cura e Sustentação',
+    skills:[{lvl:1,name:'Golpe de Luz',desc:'2.5x dano contra Trevas'},{lvl:2,name:'Cura Sagrada',desc:'Recupera 40% da vida total'},{lvl:3,name:'Aura de Proteção',desc:'+20 DEF permanente no combate'},{lvl:4,name:'Julgamento',desc:'Reduz ataque inimigo em 50% no próximo turno'},{lvl:5,name:'Ressurreição',desc:'100% de cura e remove efeitos negativos'}]},
+  {name:'Arqueiro',icon:'&#x1F3F9;',color:'#22c55e',elem:'Neutro',focus:'Precisão e Distância',
+    skills:[{lvl:1,name:'Tiro Rápido',desc:'Dois ataques de 60% no mesmo turno'},{lvl:2,name:'Olho de Águia',desc:'100% de chance de crítico no próximo ataque'},{lvl:3,name:'Armadilha',desc:'Atordoa o inimigo por 1 turno'},{lvl:4,name:'Chuva de Flechas',desc:'Ignora a esquiva do inimigo'},{lvl:5,name:'Flecha Vampírica',desc:'150% dano, 100% vira cura'}]},
+  {name:'Druida',icon:'&#x1F333;',color:'#06b6d4',elem:'Terra',focus:'Natureza e Transformação',
+    skills:[{lvl:1,name:'Chicote de Cipó',desc:'Reduz defesa do inimigo em 10%'},{lvl:2,name:'Pele de Árvore',desc:'Reflete 20% do dano recebido'},{lvl:3,name:'Crescimento Exuberante',desc:'Floresta — regenera 10% de vida por turno'},{lvl:4,name:'Forma de Urso',desc:'Dobra a Vida Máxima e Defesa'},{lvl:5,name:'Força da Natureza',desc:'250% dano e impede fuga do inimigo'}]},
+  {name:'Necromante',icon:'&#x1F480;',color:'#6366f1',elem:'Trevas',focus:'Debuffs e Drenagem',
+    skills:[{lvl:1,name:'Toque Sombrio',desc:'Reduz dano do inimigo em 15%'},{lvl:2,name:'Erguer Esqueleto',desc:'Lacaio que ataca automaticamente'},{lvl:3,name:'Maldição',desc:'+50% dano recebido de todas as fontes'},{lvl:4,name:'Sacrifício',desc:'Consome 20% da vida para causar 3x o dano'},{lvl:5,name:'Colheita de Almas',desc:'Se inimigo morrer, recupera toda Mana e 50% HP'}]},
+  {name:'Monge',icon:'&#x1F94A;',color:'#f97316',elem:'Neutro',focus:'Combos e Equilíbrio',
+    skills:[{lvl:1,name:'Palma de Ferro',desc:'Ignora armadura do inimigo'},{lvl:2,name:'Meditação',desc:'Recupera 20% de Mana e Vida'},{lvl:3,name:'Chute Relâmpago',desc:'Concede um turno extra imediato'},{lvl:4,name:'Desviar Projéteis',desc:'Bloqueia completamente o próximo ataque'},{lvl:5,name:'Golpe do Ponto Vital',desc:'Resistência do inimigo vai a 0 + Stun'}]}
+];
+
+// RENDER CLASSES
+const grid = document.getElementById('classGrid');
+classes.forEach((c,i)=>{
+  const card = document.createElement('div');
+  card.className = 'class-card';
+  card.innerHTML = `
+    <div class="class-card-header" onclick="toggleClass(this)">
+      <div class="class-icon" style="background:${c.color}22;color:${c.color}">${c.icon}</div>
+      <h3>${c.name}</h3>
+      <span class="elem-tag" style="background:${c.color}22;color:${c.color};border:1px solid ${c.color}44">${c.elem}</span>
+    </div>
+    <div class="class-skills">
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;padding-left:0">${c.focus}</div>
+      ${c.skills.map(s=>`
+        <div class="skill-item">
+          <span class="skill-lvl">Nv${s.lvl}</span>
+          <div><span class="skill-name">${s.name}</span><div class="skill-desc">${s.desc}</div></div>
+        </div>
+      `).join('')}
+    </div>`;
+  grid.appendChild(card);
+});
+
+function toggleClass(el){
+  const skills = el.nextElementSibling;
+  skills.classList.toggle('open');
+}
+
+// ELEMENT WHEEL
+const elements = [
+  {name:'Fogo',icon:'&#x1F525;',cls:'elem-fogo'},
+  {name:'Gelo',icon:'&#x2744;',cls:'elem-gelo'},
+  {name:'Terra',icon:'&#x1F33F;',cls:'elem-terra'},
+  {name:'Luz',icon:'&#x2600;',cls:'elem-luz'},
+  {name:'Trevas',icon:'&#x1F311;',cls:'elem-trevas'},
+  {name:'Raio',icon:'&#x26A1;',cls:'elem-raio'}
+];
+const wheel = document.getElementById('elementWheel');
+elements.forEach((e,i)=>{
+  const node = document.createElement('div');
+  node.className = `elem-node ${e.cls}`;
+  node.innerHTML = `<span class="elem-icon">${e.icon}</span><span class="elem-label">${e.name}</span>`;
+  node.title = `${e.name}: Fraco contra ${['Gelo','Terra','Fogo','Trevas','Luz','?'][i]}`;
+  wheel.appendChild(node);
+  if(i<elements.length-1){
+    const arr = document.createElement('div');
+    arr.className = 'element-arrow';
+    const wheelMap = {'Fogo':'Gelo','Gelo':'Terra','Terra':'Fogo','Luz':'Trevas','Trevas':'Luz','Raio':'?'};
+    arr.textContent = `2x ${e.icon} > ${['❄️','🌿','🔥','🌑','☀️','⚡'][i]}`;
+    arr.title = `${e.name} causa dano dobrado contra ${wheelMap[e.name]}`;
+    arr.style.fontSize = '12px';
+    wheel.appendChild(arr);
+  }
+});
+
+// TABS
+function openTab(btn, id){
+  const parent = btn.parentElement;
+  parent.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const container = parent.nextElementSibling;
+  while(container && !container.classList.contains('tab-content')) container = container.nextElementSibling;
+  if(!container) return;
+  container.parentElement.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// COPY CODE
+function copyCode(btn){
+  const code = btn.closest('.code-block').querySelector('pre code');
+  navigator.clipboard.writeText(code.textContent);
+  const orig = btn.textContent;
+  btn.textContent = 'Copiado!';
+  setTimeout(()=>btn.textContent=orig,2000);
+}
+
+// STAGGER SIMULATION
+function simularStagger(){
+  const bar = document.getElementById('staggerBar');
+  const label = document.getElementById('staggerLabel');
+  let w = parseFloat(bar.style.width);
+  w = Math.max(0, w - 25 + Math.random() * 10);
+  bar.style.width = w + '%';
+  label.textContent = Math.round(w) + '%';
+  if(w <= 0){
+    label.textContent = '0% — STAGGER!';
+    bar.style.width = '100%';
+    setTimeout(()=>{
+      bar.style.transition = 'none';
+      bar.style.width = '75%';
+      label.textContent = '75%';
+      setTimeout(()=>bar.style.transition = 'width 1s ease', 50);
+    }, 1500);
+  }
+}
+</script>
+
+</body>
+</html>

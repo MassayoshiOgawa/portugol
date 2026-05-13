@@ -1,123 +1,12 @@
 programa
 {
-	inclua biblioteca Util
-	inclua biblioteca Texto
-	
-	const inteiro VIDA_MAX = 100
-	
-	funcao inteiro ataque_jogador(inteiro ataque_base){
-		inteiro dano = ataque_base + Util.sorteia(1, 10)
-		retorne dano
-	}
-	
-	funcao inteiro ataque_inimigo(inteiro ataque_base){
-		inteiro dano = ataque_base + Util.sorteia(1, 8)
-		retorne dano
-	}
 	
 	funcao inicio()
 	{
-		cadeia nome
-		inteiro vida_jogador = VIDA_MAX
-		inteiro vida_monstro = 80
-		inteiro ataque_player = 15
-		inteiro ataque_monstro = 12
-		inteiro opcao
-		logico batalha = verdadeiro
-		
-		escreva("=== RPG EM PORTUGOL STUDIO ===\n")
-		escreva("Digite o nome do heroi: ")
-		leia(nome)
-		
-		nome = Texto.caixa_alta(nome)
-		
-		escreva("\nBem-vindo, ", nome, "!\n")
-		escreva("Um monstro apareceu na floresta!\n")
-		
-		enquanto(batalha == verdadeiro){
-			
-			escreva("\n========================\n")
-			escreva("VIDA DO HEROI: ", vida_jogador, "\n")
-			escreva("VIDA DO MONSTRO: ", vida_monstro, "\n")
-			escreva("========================\n")
-			
-			escreva("1 - Atacar\n")
-			escreva("2 - Curar\n")
-			escreva("3 - Fugir\n")
-			escreva("Escolha: ")
-			leia(opcao)
-			
-			escolha(opcao){
-				
-				caso 1:
-					inteiro dano_player = ataque_jogador(ataque_player)
-					
-					escreva("\nVoce atacou o monstro!\n")
-					escreva("Dano causado: ", dano_player, "\n")
-					
-					vida_monstro = vida_monstro - dano_player
-					
-					se(vida_monstro <= 0){
-						escreva("\nO monstro foi derrotado!\n")
-						escreva("VOCE VENCEU!\n")
-						batalha = falso
-					} senao {
-						
-						inteiro dano_monstro = ataque_inimigo(ataque_monstro)
-						
-						escreva("\nO monstro atacou voce!\n")
-						escreva("Dano recebido: ", dano_monstro, "\n")
-						
-						vida_jogador = vida_jogador - dano_monstro
-						
-						se(vida_jogador <= 0){
-							escreva("\nSeu heroi morreu...\n")
-							escreva("GAME OVER\n")
-							batalha = falso
-						}
-					}
-					
-					pare
-					
-				caso 2:
-					inteiro cura = Util.sorteia(10, 25)
-					
-					escreva("\nVoce usou uma pocao!\n")
-					escreva("Vida recuperada: ", cura, "\n")
-					
-					vida_jogador = vida_jogador + cura
-					
-					se(vida_jogador > VIDA_MAX){
-						vida_jogador = VIDA_MAX
-					}
-					
-					inteiro dano_monstro2 = ataque_inimigo(ataque_monstro)
-					
-					escreva("\nEnquanto se curava, o monstro atacou!\n")
-					escreva("Dano recebido: ", dano_monstro2, "\n")
-					
-					vida_jogador = vida_jogador - dano_monstro2
-					
-					se(vida_jogador <= 0){
-						escreva("\nSeu heroi morreu...\n")
-						escreva("GAME OVER\n")
-						batalha = falso
-					}
-					
-					pare
-					
-				caso 3:
-					escreva("\nVoce fugiu da batalha!\n")
-					batalha = falso
-					pare
-					
-				caso contrario:
-					escreva("\nOpcao invalida!\n")
-					pare
-			}
-		}
-		
-		escreva("\nFim do jogo.\n")
+		inteiro numero
+		escreva("Digite um número: ")
+		leia(numero)
+		escreva("O número digitado foi: ", numero)
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -125,7 +14,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2777; 
+ * @POSICAO-CURSOR = 0; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

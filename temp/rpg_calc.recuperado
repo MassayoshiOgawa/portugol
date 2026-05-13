@@ -1,7 +1,7 @@
 programa
 {
-	inclua biblioteca Matematica
-	funcao inicio(){
+	inclua biblioteca Matematica
+	funcao inicio(){
 		para(inteiro i = 1; i <= 4; i++){
 			logico terminar = falso
 			cadeia pause = ""
@@ -40,7 +40,7 @@ programa
 			inteiro atkFinal = 0
 			inteiro intFinal = 0
 	
-			para(inteiro j = 0; j < 50; j++){
+			para(inteiro j = 0; j < 100; j++){
 				hpFinal += hp * mult
 				atkFinal += atk
 				intFinal += int
@@ -58,7 +58,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 476; 
+ * @POSICAO-CURSOR = 666; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

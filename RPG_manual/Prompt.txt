@@ -1,0 +1,1071 @@
+"Atue como um Engenheiro de Software e Game Designer Sênior. Sua tarefa é criar o código-fonte completo, modular e otimizado em Portugol Studio para um RPG de Texto Profissional. O código deve utilizar as bibliotecas Util, Matematica e Tipos. Se for necessário, poderá utilizar outras bibliotecas se preferir.
+
+1. ARQUITETURA DE CLASSES E HABILIDADES (LEVEL CAP 5):
+Implemente 8 classes. Cada uma começa com 1 habilidade no Nível 1 e desbloqueia uma nova a cada nível, totalizando 5 habilidades no Nível 5.
+
+1. Guerreiro (Foco: Força Bruta e Resistência)
+
+(Nível 1) Golpe Pesado: Causa 150% do dano de ataque base.
+
+(Nível 2) Postura Defensiva: Reduz o dano recebido em 40% por 3 turnos.
+
+(Nível 3) Grito de Guerra: Aumenta o dano do jogador em 25% até o fim do combate.
+
+(Nível 4) Redemoinho: Causa dano fixo alto e reduz a barra de Stagger do inimigo em 50%.
+
+(Nível 5) Execução: Se o inimigo tiver menos de 30% de vida, causa 300% de dano; caso contrário, causa dano normal.
+
+2. Mago (Foco: Elementos e Controle - Elemento: Fogo/Gelo)
+
+(Nível 1) Dardo Místico: Dano mágico que ignora 20% da defesa do inimigo.
+
+(Nível 2) Escudo Arcano: Cria uma barreira que absorve os próximos 50 pontos de dano.
+
+(Nível 3) Nevasca: Muda o ambiente para Gelo. Reduz a precisão do inimigo em 30% por 5 turnos.
+
+(Nível 4) Tempestade: Dano elemental massivo de raio (200% do poder mágico).
+
+(Nível 5) Dreno de Mana: Causa dano e recupera 50% do custo de Mana gasto.
+
+3. Ladino (Foco: Crítico e Efeitos - Elemento: Trevas)
+
+(Nível 1) Punhalada: Dano baixo, mas tem 50% de chance de causar dano crítico (2x).
+
+(Nível 2) Esquiva: Aumenta a chance de o inimigo errar o ataque em 40% por 2 turnos.
+
+(Nível 3) Bomba de Fumaça: Muda o ambiente para Escuridão. O jogador não pode ser atingido no próximo turno.
+
+(Nível 4) Veneno: Aplica debuff que retira 5% da vida do inimigo todo turno durante a luta.
+
+(Nível 5) Assalto: Causa dano e rouba uma quantia de Ouro aleatória do inimigo (além de curar 15% da vida).
+
+4. Paladino (Foco: Cura e Sustentação - Elemento: Luz)
+
+(Nível 1) Golpe de Luz: Dano elemental de Luz. Se for contra Trevas, causa 2.5x de dano.
+
+(Nível 2) Cura Sagrada: Recupera 40% da vida total do jogador instantaneamente.
+
+(Nível 3) Aura de Proteção: Aumenta a defesa em 20 pontos fixos permanentemente durante o combate.
+
+(Nível 4) Julgamento: Causa dano e reduz o ataque do inimigo pela metade no próximo turno.
+
+(Nível 5) Ressurreição: Recupera 100% da vida e limpa todos os efeitos negativos (fome/veneno).
+
+5. Arqueiro (Foco: Precisão e Distância)
+
+(Nível 1) Tiro Rápido: Realiza dois ataques de 60% de dano no mesmo turno.
+
+(Nível 2) Olho de Águia: Próximo ataque terá 100% de chance de acerto crítico.
+
+(Nível 3) Armadilha: Atordoa (Stun) o inimigo, impedindo-o de agir por 1 turno.
+
+(Nível 4) Chuva de Flechas: Dano massivo que ignora a esquiva do inimigo.
+
+(Nível 5) Flecha Vampírica: Causa 150% de dano e converte 100% desse dano em cura para o jogador.
+
+6. Druida (Foco: Natureza e Transformação - Elemento: Terra)
+
+(Nível 1) Chicote de Cipó: Dano de terra que reduz a defesa do inimigo em 10%.
+
+(Nível 2) Pele de Árvore: Reflete 20% do dano recebido de volta para o atacante.
+
+(Nível 3) Crescimento Exuberante: Muda o ambiente para Floresta. Regenera 10% de vida por turno.
+
+(Nível 4) Forma de Urso: Aumenta a Vida Máxima temporariamente e dobra a Defesa.
+
+(Nível 5) Força da Natureza: Invoca raízes que causam 250% de dano e impedem o inimigo de fugir.
+
+7. Necromante (Foco: Debuffs e Drenagem - Elemento: Trevas)
+
+(Nível 1) Toque Sombrio: Dano baixo que reduz o dano do inimigo em 15%.
+
+(Nível 2) Erguer Esqueleto: Invoca um lacaio que ataca automaticamente todo turno causando dano fixo.
+
+(Nível 3) Maldição: O inimigo recebe 50% a mais de dano de todas as fontes.
+
+(Nível 4) Sacrifício: Consome 20% da vida atual do jogador para causar 3x o valor sacrificado como dano.
+
+(Nível 5) Colheita de Almas: Se o inimigo morrer neste turno, o jogador recupera toda a Mana e 50% da Vida.
+
+8. Monge (Foco: Combos e Equilíbrio)
+
+(Nível 1) Palma de Ferro: Dano físico puro que ignora armadura.
+
+(Nível 2) Meditação: Recupera 20% de Mana e 20% de Vida em um turno de repouso.
+
+(Nível 3) Chute Relâmpago: Ataca o inimigo e concede ao jogador um turno extra imediato.
+
+(Nível 4) Desviar Projéteis: Bloqueia completamente o dano do próximo ataque inimigo.
+
+(Nível 5) Golpe do Ponto Vital: Causa dano alto e define a resistência do inimigo para 0 (Atordoamento imediato).
+
+2. ENGINE DE COMBATE, ELEMENTOS E STAGGER:
+
+Turnos: [1] Atacar, [2] Habilidades (com sub-menu e opção '[0] Voltar'), [3] Itens, [4] Fugir.
+
+Sistema Elemental: Implemente fraquezas (Fogo > Gelo > Terra > Fogo | Luz <> Trevas). Dano dobrado em fraquezas.
+
+Barra de Stagger (Atordoamento): Inimigos têm resistência. Ao chegar a 0, o inimigo pula o turno e o jogador dá dano crítico.
+
+Durabilidade: Cada ataque reduz a durabilidade da arma. Se chegar a 0, o dano cai 90% até ser reparada no Ferreiro.
+
+3. SISTEMA DE SOBREVIVÊNCIA E MUNDO:
+
+Ciclo Dia/Noite: A cada 5 ações, o tempo muda. À Noite, inimigos são mais fortes (+30% dano), mas dão +50% de XP.
+
+Fome: Variável de 0 a 100. Diminui com o tempo. Se chegar a 0, o jogador fica 'Exausto' (-50% de atributos).
+
+Ambientes: Habilidades que mudam o ambiente aplicam buffs/debuffs (ex: Nevasca reduz precisão do inimigo).
+
+4. ECONOMIA E PERSISTÊNCIA:
+
+Loja e Ferreiro: Compra de Poções, Ração (Fome) e Upgrades de Equipamento (+1, +2...).
+
+Save System: Ao sair ou upar, exiba um 'Save Code' (vetor de inteiros) que o jogador possa anotar e digitar ao iniciar o jogo para restaurar Classe, Nível, Ouro e Equipamento.
+
+5. REQUISITOS TÉCNICOS DE CÓDIGO:
+
+O código deve ser totalmente modular com funções: menu_principal(), gerar_combate(), loja(), ferreiro(), check_lvl().
+
+Use limpa() para manter a interface e u.aguarde() para imersão.
+
+Comente as seções do código para organização.
+
+Gere o código completo agora. Se o código for muito longo para uma única resposta, apresente a estrutura principal e as funções essenciais primeiro, e eu pedirei a continuação."
+
+6. SISTEMA DE LOJA:
+
+Para que o sistema de economia do seu RPG não seja apenas comprar "Poção de Vida", precisamos estruturar a loja como um ecossistema vivo. No Portugol, isso será feito através de uma função loja() com condicionais (se/senao) que verificam o nível, o ouro e a hora do dia (ciclo_dia_noite).
+
+Aqui está o detalhamento técnico da Loja e Economia para você inserir no seu prompt:
+
+Detalhamento do Sistema de Economia e Loja (Ferreiro e Mercador)
+1. Dinâmica de Preços e Disponibilidade:
+
+Inflação Noturna: Durante a Noite, os itens de cura custam 25% mais caro devido ao perigo, mas itens de "Trevas" ficam 20% mais baratos.
+
+Reputação: A cada 500 moedas gastas, o jogador ganha 5% de desconto permanente (cumulativo até 20%).
+
+2. Itens de Consumo (Disponíveis desde o Nível 1):
+
+Pão Velho (10g): Recupera 15 de Fome. (Essencial para não ficar Exausto).
+
+Ração de Viagem (35g): Recupera 60 de Fome.
+
+Poção de Vida P (25g): Recupera 30 HP.
+
+Poção de Mana P (25g): Recupera 30 MP.
+
+Elixir de Adrenalina (50g): Recupera 20 de Estamina/Energia instantaneamente.
+
+3. Itens Especiais (Desbloqueio por Nível):
+
+Pedra de Amolar (Lv 2 | 80g): Restaura 100% da Durabilidade da arma sem precisar ir ao ferreiro.
+
+Bomba de Luz (Lv 3 | 120g): Uso único. Atordoa o inimigo por 1 turno e muda o ambiente para 'Luz'.
+
+Amuleto da Sorte (Lv 4 | 300g): Item passivo. Aumenta o drop de ouro dos monstros em 30%.
+
+Coração de Fênix (Lv 5 | 750g): Se o jogador morrer, ele revive com 20% de vida uma única vez.
+
+4. O Ferreiro (Sistema de Upgrade e Durabilidade):
+
+Reparo de Emergência: Custa (Durabilidade_Perdida * 0.5) em ouro.
+
+Refino de Arma (+1 a +5):
+
++1 (Lv 1): 100g -> +10% Dano.
+
++2 (Lv 2): 250g -> +25% Dano.
+
++3 (Lv 3): 500g -> +40% Dano + Bônus Elemental.
+
++4 (Lv 4): 1000g -> +60% Dano.
+
++5 (Lv 5): 2500g -> Dobra o dano base e torna a arma inquebrável.
+
+5. O Mercador Negro (Aparece apenas à NOITE):
+
+Sangue de Demônio (150g): Aumenta o ataque em 50% por 3 turnos, mas drena 5 de vida por turno.
+
+Capa de Invisibilidade (400g): Permite fugir de qualquer combate com 100% de chance.
+
+Peraminho Proibido (Lv 5 | 1000g): Reseta todos os Cooldowns de habilidades imediatamente.
+
+6. Sistema de Troca (Venda):
+
+O jogador pode vender "Restos de Monstros" coletados em batalha.
+
+Preço de Venda: Itens comuns valem 30% do valor de compra. Itens raros valem 50%.
+
+Como a IA deve processar isso no código:
+No prompt, peça para a IA organizar a loja assim:
+
+Menu de Categorias: [1] Consumíveis, [2] Equipamentos/Upgrades, [3] Vender Itens.
+
+Verificação de Estoque: se (nivel_jogador < item_requerido) { escreva("Nível insuficiente!") }.
+
+Verificação de Ouro: se (ouro >= preco_item) { ouro -= preco_item } senao { escreva("Ouro insuficiente!") }.
+
+Com esses detalhes, o jogo deixa de ser apenas apertar botões e passa a exigir que o jogador planeje se gasta o dinheiro com comida para não morrer de fome ou se economiza para a espada +5.
+
+7. ARQUITETURA AVANÇADA E ESCALABILIDADE:
+
+O código deve ser estruturado como uma engine reutilizável de RPG.
+
+Requisitos:
+- Separar dados de lógica.
+- Utilizar registros para Jogador, Inimigo, Item, Skill e Quest.
+- Utilizar vetores para inventário, lojas e habilidades.
+- Criar sistema de buffs/debuffs com duração em turnos.
+- Implementar cooldowns de habilidades.
+- Criar sistema de IA de inimigos.
+- Implementar loot procedural.
+- Implementar eventos aleatórios.
+- Implementar sistema de quests.
+- Criar funções reutilizáveis para:
+  aplicar_dano()
+  aplicar_efeito()
+  usar_habilidade()
+  gerar_loot()
+  gerar_inimigo()
+  atualizar_turnos()
+  atualizar_status()
+  salvar_jogo()
+  carregar_jogo()
+
+O código deve priorizar:
+- modularidade
+- escalabilidade
+- legibilidade
+- reutilização
+- fácil manutenção
+
+Evite duplicação de código.
+
+Use vetores e registros para estruturar:
+- jogadores
+- inimigos
+- itens
+- habilidades
+- efeitos
+- quests
+- equipamentos
+
+Evite variáveis soltas.
+Organize o código em módulos reutilizáveis.
+
+8. SISTEMA AVANÇADO DE BUFFS, DEBUFFS E EFEITOS TEMPORÁRIOS:
+
+Implemente um sistema profissional de efeitos temporários baseado em duração por turnos. Todos os Buffs e Debuffs devem ser armazenados em vetores/registros próprios e atualizados automaticamente no início e fim de cada turno através de funções como:
+
+aplicar_buff()
+aplicar_debuff()
+remover_efeito()
+atualizar_efeitos()
+processar_efeitos_turno()
+
+Cada efeito deve possuir:
+- nome
+- duração (em turnos)
+- intensidade
+- tipo
+- origem
+- acumulável (verdadeiro/falso)
+- efeito_visual_texto
+- prioridade
+
+REGRAS GERAIS:
+- Buffs e Debuffs devem possuir contador de turnos.
+- Efeitos acumuláveis podem empilhar até um limite.
+- Efeitos não acumuláveis apenas renovam duração.
+- Todos os efeitos devem ser exibidos na HUD do combate.
+- O sistema deve permitir múltiplos efeitos ativos simultaneamente.
+- Efeitos devem ser processados em ordem de prioridade.
+- Alguns efeitos podem interagir entre si.
+- O sistema deve funcionar tanto para jogador quanto inimigos.
+
+==================================================
+BUFFS (EFEITOS POSITIVOS)
+==================================================
+
+1. REGENERAÇÃO
+
+Tipo: Cura Contínua
+
+Mecânica:
+- Recupera uma porcentagem da vida máxima ao final de cada turno.
+- Duração padrão: 3 a 5 turnos.
+- Pode existir regeneração de Vida e Mana separadamente.
+- Regeneração não funciona se o alvo estiver sob "Ferida Grave" ou "Maldição".
+
+Exemplo:
+Regeneração Leve:
++5% HP por turno durante 3 turnos.
+
+Regeneração Superior:
++10% HP + 5% Mana por turno durante 5 turnos.
+
+Interações:
+- Ambientes de Floresta aumentam regeneração em +50%.
+- Queimadura reduz regeneração pela metade.
+- Luz fortalece efeitos regenerativos.
+
+Mensagem:
+"[Regeneração] Você recuperou 25 HP."
+
+==================================================
+
+2. ESCUDO
+
+Tipo: Barreira Protetora
+
+Mecânica:
+- Cria uma barreira temporária que absorve dano antes da vida.
+- O escudo possui HP próprio.
+- Dano recebido reduz primeiro o valor do escudo.
+- Quando o escudo chega a 0, ele quebra.
+
+Exemplo:
+Escudo Arcano:
+Absorve 80 de dano durante 4 turnos.
+
+Escudo Divino:
+Absorve 20% da vida máxima.
+
+Regras:
+- Escudos diferentes podem coexistir.
+- Escudos iguais renovam valor e duração.
+- Parte do dano excedente atravessa após quebrar.
+
+Interações:
+- Magias de Trevas causam +25% dano ao escudo.
+- Defesa aumenta eficiência do escudo.
+- Críticos causam dano extra ao escudo.
+
+Mensagem:
+"[Escudo] A barreira absorveu 42 de dano."
+
+==================================================
+
+3. FÚRIA
+
+Tipo: Amplificador de Ataque
+
+Mecânica:
+- Aumenta dano físico.
+- Reduz parcialmente defesa.
+- Pode aumentar chance crítica.
+
+Exemplo:
+Fúria Berserker:
++40% dano físico
+-20% defesa
+Duração: 4 turnos
+
+Fúria Suprema:
++70% dano
++25% crítico
+-35% resistência
+
+Interações:
+- Vida abaixo de 30% aumenta efeito da Fúria.
+- Combina com habilidades de Guerreiro e Monge.
+- Pode causar "Exaustão" ao terminar.
+
+Mensagem:
+"[Fúria] Seu ataque foi fortalecido!"
+
+==================================================
+
+4. VELOCIDADE
+
+Tipo: Manipulação de Turnos
+
+Mecânica:
+- Aumenta chance de agir primeiro.
+- Pode conceder turno extra.
+- Reduz cooldowns.
+- Aumenta esquiva.
+
+Exemplo:
+Velocidade:
++25 AGI
++15% esquiva
+Duração: 3 turnos
+
+Aceleração Suprema:
+50% chance de turno extra.
+
+Regras:
+- Não pode gerar turnos infinitos.
+- Máximo de 1 turno extra por rodada.
+
+Interações:
+- Gelo reduz efeitos de velocidade.
+- Raio fortalece velocidade.
+- Combina com Ladino e Arqueiro.
+
+Mensagem:
+"[Velocidade] Seus movimentos ficaram mais rápidos."
+
+==================================================
+
+5. INVISIBILIDADE
+
+Tipo: Ocultação
+
+Mecânica:
+- Inimigos não podem acertar ataques diretos.
+- Habilidades em área ainda podem atingir.
+- Primeiro ataque saindo da invisibilidade causa dano crítico garantido.
+
+Exemplo:
+Invisibilidade:
+100% evasão por 1 turno.
+
+Sombra Absoluta:
+2 turnos invisível
+Primeiro golpe = +200% dano.
+
+Regras:
+- Quebra ao atacar.
+- Chefes possuem chance reduzida de serem enganados.
+- Não protege contra dano contínuo.
+
+Interações:
+- Escuridão aumenta duração.
+- Luz remove invisibilidade instantaneamente.
+
+Mensagem:
+"[Invisibilidade] Você desapareceu nas sombras."
+
+==================================================
+
+6. RESISTÊNCIA ELEMENTAL
+
+Tipo: Resistência Defensiva
+
+Mecânica:
+- Reduz dano recebido de elementos específicos.
+- Pode conceder imunidade parcial ou total.
+
+Elementos:
+- Fogo
+- Gelo
+- Terra
+- Luz
+- Trevas
+- Raio
+
+Exemplo:
+Resistência ao Fogo:
+-50% dano de fogo.
+
+Pele Glacial:
+Imunidade a congelamento.
+
+Regras:
+- Resistências iguais não acumulam.
+- Resistências diferentes coexistem.
+- Fraquezas ainda possuem prioridade parcial.
+
+Interações:
+- Ambientes alteram resistências.
+- Equipamentos podem fornecer resistência passiva.
+
+Mensagem:
+"[Resistência] O dano elemental foi reduzido."
+
+==================================================
+
+7. VAMPIRISMO
+
+Tipo: Roubo de Vida
+
+Mecânica:
+- Parte do dano causado retorna como cura.
+- Pode funcionar apenas em ataques físicos, mágicos ou ambos.
+
+Exemplo:
+Vampirismo Menor:
+20% do dano causado retorna como HP.
+
+Vampirismo Sombrio:
+35% roubo de vida
++10% dano Trevas
+
+Regras:
+- Não pode ultrapassar Vida Máxima.
+- Inimigos mortos podem conceder bônus extras.
+- Chefes possuem resistência reduzida ao efeito.
+
+Interações:
+- Luz reduz eficiência do vampirismo.
+- Trevas fortalecem.
+- Combina com crítico.
+
+Mensagem:
+"[Vampirismo] Você drenou 37 HP do inimigo."
+
+==================================================
+SISTEMA DE PROCESSAMENTO DOS EFEITOS
+==================================================
+
+No início do turno:
+- aplicar dano contínuo
+- aplicar regeneração
+- verificar cooldowns
+- atualizar duração
+
+No fim do turno:
+- reduzir duração dos efeitos
+- remover efeitos expirados
+- processar efeitos finais
+
+Quando duração <= 0:
+remover_buff()
+
+Mensagem:
+"[Efeito Encerrado] Fúria terminou."
+
+==================================================
+INTERAÇÕES AVANÇADAS ENTRE EFEITOS
+==================================================
+
+Combinações:
+- Fúria + Vampirismo = cura ampliada
+- Invisibilidade + Crítico = dano dobrado
+- Velocidade + Esquiva = evasão extrema
+- Regeneração + Escudo = sustentação avançada
+
+Conflitos:
+- Luz remove Trevas
+- Congelamento reduz Velocidade
+- Queimadura reduz Regeneração
+- Silêncio impede buffs mágicos
+
+==================================================
+IA DOS INIMIGOS E BUFFS
+==================================================
+
+A IA deve:
+- usar buffs defensivos com HP baixo
+- usar fúria em estado crítico
+- priorizar resistência elemental contra fraquezas
+- remover invisibilidade usando habilidades de área
+- usar regeneração em batalhas longas
+
+==================================================
+EXIBIÇÃO VISUAL DOS STATUS
+==================================================
+
+Mostrar abaixo da HUD:
+
+BUFFS:
+[Fúria: 2T]
+[Escudo: 50]
+[Regeneração: 3T]
+
+DEBUFFS:
+[Veneno: 4T]
+[Queimadura: 2T]
+
+As mensagens devem aparecer dinamicamente durante o combate usando limpa() e u.aguarde().
+
+9. SISTEMA AVANÇADO DE INVENTÁRIO, PESO, LOOT E GERENCIAMENTO DE ITENS:
+
+Implemente um sistema de inventário profissional, modular e estratégico. O inventário não deve ser apenas um menu de itens, mas uma mecânica central de sobrevivência, progressão e tomada de decisão.
+
+O sistema deve funcionar utilizando registros, vetores e funções reutilizáveis.
+
+==================================================
+ESTRUTURA BASE DO INVENTÁRIO
+==================================================
+
+Crie um registro completo para itens:
+
+registro item {
+    cadeia nome
+    cadeia descricao
+    cadeia categoria
+    cadeia raridade
+    cadeia tipo
+    cadeia elemento
+
+    inteiro quantidade
+    inteiro quantidade_maxima
+
+    real peso
+    inteiro valor
+
+    inteiro nivel_requerido
+
+    logico empilhavel
+    logico utilizavel
+    logico equipavel
+    logico descartavel
+    logico item_quest
+
+    inteiro bonus_forca
+    inteiro bonus_defesa
+    inteiro bonus_critico
+    inteiro bonus_agilidade
+    inteiro bonus_mana
+    inteiro bonus_hp
+
+    inteiro efeito_principal
+    inteiro durabilidade
+    inteiro durabilidade_maxima
+}
+
+==================================================
+CATEGORIAS DE ITENS
+==================================================
+
+Todos os itens devem pertencer a categorias específicas:
+
+1. Consumíveis
+- Poções
+- Comida
+- Elixires
+- Bombas
+- Pergaminhos
+
+2. Equipamentos
+- Armas
+- Armaduras
+- Amuletos
+- Anéis
+- Botas
+- Capacetes
+
+3. Materiais
+- Couro
+- Ferro
+- Ossos
+- Cristais
+- Essências Elementais
+
+4. Itens de Quest
+- Chaves
+- Relíquias
+- Artefatos
+- Documentos
+
+5. Itens Especiais
+- Runas
+- Gemas
+- Fragmentos
+- Relíquias Lendárias
+
+==================================================
+PESO DO INVENTÁRIO
+==================================================
+
+O inventário deve possuir limite de peso.
+
+Variáveis:
+peso_atual
+peso_maximo
+
+Exemplo:
+peso_maximo = 50.0
+
+Cada item possui:
+real peso
+
+Mecânica:
+- Todo item adicionado aumenta peso_atual.
+- Se peso_atual ultrapassar peso_maximo:
+    - jogador fica "Sobrecarregado"
+    - velocidade reduzida
+    - esquiva reduzida
+    - não pode fugir de combate
+    - stamina reduzida por turno
+
+==================================================
+ESTADOS DE PESO
+==================================================
+
+Leve (0% - 50%)
+- sem penalidades
+
+Médio (51% - 80%)
+- -10% velocidade
+
+Pesado (81% - 99%)
+- -25% velocidade
+- -15% esquiva
+
+Sobrecarregado (100%+)
+- -50% velocidade
+- sem esquiva
+- não pode correr/fugir
+- stamina reduzida continuamente
+
+Mensagem:
+"[Peso Excessivo] Seu inventário está muito pesado."
+
+==================================================
+SLOTS DO INVENTÁRIO
+==================================================
+
+Além do peso, o inventário deve possuir limite de slots.
+
+Exemplo:
+max_slots = 30
+
+Itens empilháveis ocupam:
+1 slot por pilha.
+
+Itens únicos ocupam:
+1 slot individual.
+
+Se não houver slots:
+- item não pode ser coletado
+
+Mensagem:
+"[Inventário Cheio] Não há espaço disponível."
+
+==================================================
+SISTEMA DE STACK (EMPILHAMENTO)
+==================================================
+
+Itens consumíveis e materiais devem empilhar.
+
+Exemplo:
+Poção de Vida:
+quantidade_maxima = 10
+
+Mecânica:
+- Ao coletar item igual:
+    aumentar quantidade
+- Se stack atingir limite:
+    criar nova pilha
+
+Itens não empilháveis:
+- armas
+- armaduras
+- itens únicos
+
+==================================================
+RARIDADE DOS ITENS
+==================================================
+
+Todos os itens devem possuir raridade:
+
+Comum
+Incomum
+Raro
+Épico
+Lendário
+Mítico
+
+A raridade influencia:
+- valor
+- atributos
+- efeitos especiais
+- chance de drop
+
+==================================================
+LOOT PROCEDURAL
+==================================================
+
+O sistema deve gerar loot procedural automaticamente.
+
+Estrutura:
+[Prefixo] + [Tipo] + [Elemento] + [Raridade]
+
+Exemplos:
+- Espada Flamejante Rara
+- Arco Sombrio Épico
+- Amuleto Glacial Lendário
+
+Possíveis bônus:
+- crítico
+- vampirismo
+- resistência elemental
+- regeneração
+- bônus de ouro
+- bônus de XP
+
+==================================================
+DURABILIDADE DOS ITENS
+==================================================
+
+Equipamentos possuem durabilidade.
+
+Variáveis:
+durabilidade
+durabilidade_maxima
+
+Mecânica:
+- ataques reduzem durabilidade
+- ao chegar em 0:
+    dano reduzido em 90%
+    bônus deixam de funcionar
+
+Estados:
+100% = normal
+50% = desgastado
+25% = danificado
+0% = quebrado
+
+Mensagem:
+"[Durabilidade] Sua arma perdeu resistência."
+
+==================================================
+EQUIPAMENTOS
+==================================================
+
+Crie sistema de equipamentos completos.
+
+Slots:
+- arma
+- armadura
+- capacete
+- botas
+- luvas
+- anel
+- amuleto
+
+Equipar item:
+- remove item do inventário
+- aplica bônus automaticamente
+
+Desequipar:
+- retorna item ao inventário
+- remove bônus
+
+==================================================
+SISTEMA DE USO DE ITENS
+==================================================
+
+Consumíveis devem possuir:
+- animação textual
+- efeito imediato
+- remoção automática após uso
+
+Exemplo:
+Poção de Vida:
++50 HP
+
+Ração:
++40 Fome
+
+Pergaminho:
+efeito mágico instantâneo
+
+Mensagem:
+"[Item Usado] Você recuperou 50 HP."
+
+==================================================
+ORDENAÇÃO AUTOMÁTICA
+==================================================
+
+O inventário deve permitir:
+
+[1] Ordenar por Nome
+[2] Ordenar por Peso
+[3] Ordenar por Raridade
+[4] Ordenar por Categoria
+[5] Ordenar por Valor
+[6] Ordenar por Tipo
+
+==================================================
+FILTROS DE INVENTÁRIO
+==================================================
+
+Permitir visualizar apenas:
+
+- Consumíveis
+- Equipamentos
+- Materiais
+- Quests
+- Raros/Lendários
+- Itens utilizáveis
+
+==================================================
+DESCRIÇÃO DETALHADA DOS ITENS
+==================================================
+
+Ao selecionar item:
+mostrar:
+
+Nome
+Descrição
+Peso
+Valor
+Raridade
+Durabilidade
+Atributos
+Efeitos
+Elemento
+Preço de venda
+
+Exemplo:
+================================
+Espada Flamejante Rara +2
+Dano: 42
+Crítico: +15%
+Elemento: Fogo
+Peso: 6.5
+Durabilidade: 78/100
+Valor: 450g
+================================
+
+==================================================
+SISTEMA DE VENDA
+==================================================
+
+Itens podem ser vendidos.
+
+Valores:
+- comum = 30%
+- raro = 50%
+- lendário = 70%
+
+Itens de Quest:
+- não podem ser vendidos
+
+Mensagem:
+"[Venda] Item vendido por 120 moedas."
+
+==================================================
+ITENS DE QUEST
+==================================================
+
+Itens de missão:
+- não ocupam peso
+- não podem ser descartados
+- possuem aba própria
+
+==================================================
+DESCARTE DE ITENS
+==================================================
+
+Permitir:
+[Descartar Item]
+
+Regras:
+- pedir confirmação
+- itens raros exigem confirmação dupla
+- itens de quest não podem ser descartados
+
+Mensagem:
+"[Item Descartado] O item foi removido."
+
+==================================================
+BAÚS E ARMAZENAMENTO
+==================================================
+
+Adicionar:
+- baús em cidades
+- armazenamento permanente
+- expansão de espaço
+
+Mecânica:
+- guardar itens raros
+- evitar sobrepeso
+- organizar builds
+
+==================================================
+MORTE E PERDA DE ITENS
+==================================================
+
+Ao morrer:
+- chance de perder ouro
+- chance de perder materiais
+- equipamentos equipados permanecem
+
+Modo Difícil:
+- drop parcial do inventário
+
+==================================================
+INTERAÇÃO COM OUTROS SISTEMAS
+==================================================
+
+Fome:
+- comida no inventário é essencial
+
+Crafting:
+- materiais usados em receitas
+
+Durabilidade:
+- exige kits de reparo
+
+Combate:
+- bombas e consumíveis estratégicos
+
+Exploração:
+- tochas e ferramentas ocupam espaço
+
+==================================================
+HUD DO INVENTÁRIO
+==================================================
+
+Mostrar sempre:
+
+================================
+INVENTÁRIO
+Peso: 34.5 / 50
+Slots: 22 / 30
+Ouro: 1250
+================================
+
+BUFFS DE CARGA:
+[Leve]
+[Pesado]
+[Sobrecarregado]
+
+==================================================
+FUNÇÕES OBRIGATÓRIAS
+==================================================
+
+adicionar_item()
+remover_item()
+usar_item()
+equipar_item()
+desequipar_item()
+ordenar_inventario()
+mostrar_inventario()
+verificar_peso()
+verificar_slots()
+gerar_loot()
+vender_item()
+descartar_item()
+reparar_item()
+
+==================================================
+IA E INVENTÁRIO
+==================================================
+
+Inimigos:
+- possuem tabelas de loot
+- podem usar consumíveis
+- elites carregam itens raros
+- bosses possuem drops únicos
+
+Mercadores:
+- estoque dinâmico
+- raridades variáveis
+- itens mudam conforme região
+
+==================================================
+OBJETIVO DO SISTEMA
+==================================================
+
+O inventário deve obrigar o jogador a:
+- escolher o que carregar
+- administrar peso
+- priorizar recursos
+- decidir entre loot e sobrevivência
+- preparar builds
+- economizar espaço
+- planejar batalhas futuras
+
+O inventário deve ser parte fundamental da estratégia do RPG.
+
+Dicas para o sucesso:
+O Portugol Studio é sensível: Se a IA gerar algo que não compila de primeira, geralmente é por causa de alguma variável não declarada no escopo global. Basta pedir: "Corrija o escopo das variáveis para o Portugol Studio". Alias, a estrutura "Registro" e "Repita" não existe no portugol Studio, então não use.
